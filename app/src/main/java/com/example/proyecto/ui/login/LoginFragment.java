@@ -1,5 +1,6 @@
 package com.example.proyecto.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.proyecto.R;
+import com.example.proyecto.Registrarse;
 
 public class LoginFragment extends Fragment {
 
@@ -39,6 +41,9 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Modal Registrarse",
                         Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getContext(), Registrarse.class);
+                startActivityForResult(intent, 200);
             }
         });
 
