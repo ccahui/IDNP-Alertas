@@ -16,16 +16,16 @@ import com.example.proyecto.R;
 
 public class AlertasFragment extends Fragment {
 
-    private AlertasViewModel homeViewModel;
+    private AlertasViewModel alertasViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
+        alertasViewModel =
                 ViewModelProviders.of(this).get(AlertasViewModel.class);
         View root = inflater.inflate(R.layout.alertas, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
 
-        homeViewModel.getText().observe(this, new Observer<String>() {
+        alertasViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
