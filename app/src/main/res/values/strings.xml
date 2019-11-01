@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Alertas App</string>
     <string name="title_home">Alertas</string>
-    <string name="title_dashboard">Iniciar Sesión</string>
+    <string name="title_dashboard">Buscar Persona</string>
     <string name="title_notifications">Ubicación</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="logout">Cerrar Sesión</string>
 </resources>
