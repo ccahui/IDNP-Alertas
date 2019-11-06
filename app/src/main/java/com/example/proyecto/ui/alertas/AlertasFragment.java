@@ -23,14 +23,14 @@ public class AlertasFragment extends Fragment {
         alertasViewModel =
                 ViewModelProviders.of(this).get(AlertasViewModel.class);
         View root = inflater.inflate(R.layout.alertas, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+       /* final TextView textView = root.findViewById(R.id.text_home);
 
         alertasViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
         return root;
     }
 }
