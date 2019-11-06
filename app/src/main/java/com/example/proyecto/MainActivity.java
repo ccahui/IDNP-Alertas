@@ -48,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return(true);
         case R.id.logout:
-            finish();
+
+            Intent intent2 = new Intent(this, MapsActivity.class);
+            startActivity(intent2);
+            //finish();
             return(true);
     }
         return(super.onOptionsItemSelected(item));
