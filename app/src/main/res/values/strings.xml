@@ -5,4 +5,5 @@
     <string name="title_notifications">Ubicación</string>
     <string name="login">Iniciar Sesión</string>
     <string name="logout">Cerrar Sesión</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
