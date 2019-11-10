@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/gray"
     android:orientation="vertical"
-    android:paddingHorizontal="10dp"
-    android:background="@color/white"
-    >
+    android:paddingHorizontal="10dp">
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -18,7 +17,7 @@
         android:layout_marginEnd="8dp"
         android:text="PERSONA DESAPARECIDA"
         android:textAlignment="center"
-        android:textColor="@color/purple"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -104,25 +103,16 @@
             android:layout_weight="1"
             android:text="Foto" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/common_full_open_on_phone"
-            tools:srcCompat="@android:drawable/ic_menu_report_image" />
-
     </LinearLayout>
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:text="Publicar Aviso"
-        tools:text="Publicar Aviso"
-        android:background="@color/purple"
         android:textColor="@color/white"
-        />
+        tools:text="Publicar Aviso" />
 
     <TextView
         android:id="@+id/registrar"

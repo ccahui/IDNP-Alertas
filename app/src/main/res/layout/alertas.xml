@@ -6,33 +6,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@color/white"
     android:paddingHorizontal="10dp"
     >
 
 
-
-    <RelativeLayout
-        android:layout_weight="2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <TextView
-            android:id="@+id/textGrid"
-            android:text="SISTEMA DE ALERTAS"
-            android:textSize="36sp"
-            android:textColor="@color/purple"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
-
-    </RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:orientation="horizontal"></LinearLayout>
 
     <GridLayout
         android:columnCount="2"
-        android:rowCount="3"
+        android:rowCount="2"
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="false"
-        android:layout_weight="6"
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="15dp">
@@ -47,7 +36,6 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:clickable="true"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
@@ -55,23 +43,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
+                android:layout_margin="25dp"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:clickable="true"
+                    android:layout_weight="6"
                     android:src="@drawable/robo" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ROBO"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -97,18 +85,20 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/vandalismo"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="6"
+                    android:src="@drawable/vandalismo" />
+
                 <TextView
-                    android:text="ROBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VANDALISMO"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -136,16 +126,18 @@
                 <ImageView
                     android:src="@drawable/pelea"
                     android:layout_gravity="center_horizontal"
+                    android:layout_weight="6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
                 <TextView
-                    android:text="ROBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PELEA"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -172,16 +164,18 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="6"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/acoso" />
+
                 <TextView
-                    android:text="ROBO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ACOSO"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
