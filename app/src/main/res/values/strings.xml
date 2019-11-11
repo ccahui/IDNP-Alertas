@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Sistema de Alertas</string>
-    <string name="title_home">Sistema de Alertas</string>
+    <string name="title_home">Alertas</string>
     <string name="title_dashboard">Buscar Persona</string>
     <string name="title_notifications">Ubicación</string>
     <string name="login">Iniciar Sesión</string>

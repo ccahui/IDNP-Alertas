@@ -8,7 +8,6 @@
     tools:context=".Registrarse"
     android:paddingHorizontal="10dp"
     android:paddingVertical="10dp"
-    android:background="@color/white"
     >
 
     <TextView
@@ -19,7 +18,6 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/purple"
         />
 
     <LinearLayout
@@ -112,8 +110,6 @@
         android:layout_height="wrap_content"
         android:text="Registrarse"
         android:textAllCaps="false"
-        android:background="@color/purple"
-        android:textColor="@color/white"
         />
 
     <ProgressBar

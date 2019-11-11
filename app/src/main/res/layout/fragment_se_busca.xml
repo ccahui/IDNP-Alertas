@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gray"
     android:orientation="vertical"
     android:paddingHorizontal="10dp">
 
@@ -111,7 +110,6 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:text="Publicar Aviso"
-        android:textColor="@color/white"
         tools:text="Publicar Aviso" />
 
     <TextView

@@ -58,7 +58,6 @@
                     android:layout_height="wrap_content"
                     android:text="ROBO"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -96,7 +95,6 @@
                     android:layout_height="wrap_content"
                     android:text="VANDALISMO"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -135,7 +133,6 @@
                     android:layout_height="wrap_content"
                     android:text="PELEA"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -173,7 +170,6 @@
                     android:layout_height="wrap_content"
                     android:text="ACOSO"
                     android:textAlignment="center"
-                    android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
