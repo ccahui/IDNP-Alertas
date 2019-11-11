@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +15,27 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IComunicaFragments {
+
+    @Override
+    public void robo() {
+        Toast.makeText(getApplicationContext(),"Alerta Robo desde el activity", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void vandalismo() {
+        Toast.makeText(getApplicationContext(),"Alerta Vandalismo desde el activity", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void pelea() {
+        Toast.makeText(getApplicationContext(),"Alerta Pelea desde el activity", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void acoso() {
+        Toast.makeText(getApplicationContext(),"Alerta Acoso desde el activity", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,5 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
         return(super.onOptionsItemSelected(item));
     }
+
+
 
 }
