@@ -100,6 +100,9 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_registrarse"
         android:textAllCaps="false"
+        android:background="@drawable/button"
+        android:layout_marginHorizontal="100dp"
+        android:textColor="@color/colorWhite"
         />
 
     <ProgressBar

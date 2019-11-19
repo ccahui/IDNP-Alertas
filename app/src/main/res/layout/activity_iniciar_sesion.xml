@@ -63,6 +63,9 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_login"
         android:textAllCaps="false"
+        android:background="@drawable/button"
+        android:layout_marginHorizontal="90dp"
+        android:textColor="@color/colorWhite"
 
         />
 

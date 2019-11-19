@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:ems="10"
             android:inputType="textPersonName"
             android:text="" />
 
@@ -87,6 +88,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_weight="1"
             android:text="Foto" />
 
@@ -96,7 +98,11 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_persona_desaparecida" />
+        android:text="@string/btn_persona_desaparecida"
+        android:background="@drawable/button"
+        android:textColor="@color/colorWhite"
+        android:layout_marginTop="30dp"
+        />
 
     <TextView
         android:id="@+id/registrar_fragment"
