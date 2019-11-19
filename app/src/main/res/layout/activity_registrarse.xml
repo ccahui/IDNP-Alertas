@@ -8,6 +8,7 @@
     tools:context=".Registrarse"
     android:paddingHorizontal="10dp"
     android:paddingVertical="10dp"
+    android:background="@drawable/fondo_blanco"
     >
 
     <LinearLayout
@@ -95,6 +96,7 @@
     </LinearLayout>
 
     <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/btnRegistrarse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
