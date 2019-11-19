@@ -1,9 +1,20 @@
 <resources>
     <string name="app_name">Sistema de Alertas</string>
     <string name="title_home">Alertas</string>
-    <string name="title_dashboard">Buscar Persona</string>
+    <string name="title_dashboard">Persona Desaparecida</string>
     <string name="title_notifications">Ubicación</string>
+    <string name="title_login">Iniciar Sesión</string>
+    <string name="title_registrarse">Registrarse</string>
+    <string name="title_persona_desaparecida">Persona Desaparecida</string>
+
+    <string name="btn_login">Ingresar</string>
+    <string name="btn_registrarse">Registrarse</string>
+    <string name="btn_persona_desaparecida">Publicar Aviso</string>
+
+
     <string name="login">Iniciar Sesión</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="msg_para_registrarse">¿No tienes cuenta? Registrate</string>
 </resources>

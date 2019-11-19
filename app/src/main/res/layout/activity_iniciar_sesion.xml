@@ -11,16 +11,6 @@
     android:paddingVertical="10dp"
     >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="INICIAR SESIÓN"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +61,7 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesion"
+        android:text="@string/btn_login"
         android:textAllCaps="false"
 
         />
@@ -82,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:clickable="true"
-        android:text="¿No tienes cuenta? Registrate"
+        android:text="@string/msg_para_registrarse"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_primary" />
 

@@ -32,8 +32,10 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".IniciarSesion" />
-        <activity android:name=".Registrarse" />
+        <activity android:name=".IniciarSesion"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Registrarse"
+            android:parentActivityName=".IniciarSesion"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

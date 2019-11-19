@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.proyecto.IniciarSesion;
 import com.example.proyecto.R;
 import com.example.proyecto.Registrarse;
 
@@ -28,15 +29,15 @@ public class SeBuscaFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_se_busca, container, false);
 
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-
-      /*  dashboardViewModel.getText().observe(this, new Observer<String>() {
+        TextView registrarse = (TextView) root.findViewById(R.id.registrar_fragment);
+        registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
+            public void onClick(View view) {
 
+                Intent intent = new Intent(getActivity(), Registrarse.class);
+                startActivityForResult(intent, 200);
+            }
+        });
         return root;
     }
 }

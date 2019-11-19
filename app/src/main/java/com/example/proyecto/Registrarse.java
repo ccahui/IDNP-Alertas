@@ -39,6 +39,8 @@ public class Registrarse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
 
+        this.setTitle(R.string.title_registrarse);
+
 
        nombre = (EditText) findViewById(R.id.inputNombres);
        apellido = (EditText)findViewById(R.id.inputApellidos);
