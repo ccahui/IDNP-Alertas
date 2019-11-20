@@ -1,43 +1,58 @@
 package com.example.proyecto.ui.seBusca;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.proyecto.IniciarSesion;
+import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.example.proyecto.R;
-import com.example.proyecto.Registrarse;
 
 public class SeBuscaFragment extends Fragment {
 
-    private TextView registrarse;
-    private SeBuscaViewModel dashboardViewModel;
+    private SeBuscaViewModel seBuscaViewModel;
+    View vista;
+    Activity actividad;
+    CardView ver_aviso, publicar_Aviso;
+    IComunicaFragments interfaceComunicaFragments;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(SeBuscaViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        seBuscaViewModel = ViewModelProviders.of(this).get(SeBuscaViewModel.class);
+        View root = inflater.inflate(R.layout.alertas, container, false);
 
-        View root = inflater.inflate(R.layout.fragment_se_busca, container, false);
-
-        TextView registrarse = (TextView) root.findViewById(R.id.registrar_fragment);
-        registrarse.setOnClickListener(new View.OnClickListener() {
+        vista = inflater.inflate(R.layout.fragment_se_busca, container, false);
+        ver_aviso = vista.findViewById(R.id.ver_aviso);
+        ver_aviso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(getActivity(), Registrarse.class);
-                startActivityForResult(intent, 200);
+                interfaceComunicaFragments.ver_aviso();
             }
         });
-        return root;
+        //return vista;
+        publicar_Aviso = vista.findViewById(R.id.publicar_aviso);
+        publicar_Aviso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                interfaceComunicaFragments.publicar_aviso();
+            }
+        });
+
+        return vista;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) {
+            actividad = (Activity) context;
+            interfaceComunicaFragments = (IComunicaFragments) actividad;
+        }
     }
 }

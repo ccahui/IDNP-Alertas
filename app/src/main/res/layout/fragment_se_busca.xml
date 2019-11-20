@@ -4,118 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_blanco"
     android:orientation="vertical"
-    android:paddingHorizontal="10dp"
-    tools:context=".MainActivity"
+    android:weightSum="4"
+    android:background="@color/colorWhite"
+    tools:context=".MainActivity">
 
-    >
-
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="300dp"
+        android:layout_weight="3"
+        android:columnCount="1"
+        android:padding="80dp">
 
-        <TextView
-            android:id="@+id/Nombres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nombres" />
+        <!--Row 1-->
+        <!--Column 1-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ver_aviso"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-        <EditText
-            android:id="@+id/pd_nombres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
+            <LinearLayout
+                android:layout_width="169dp"
+                android:layout_height="131dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="118dp"
+                    android:layout_height="67dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_perm_view_black_24dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <TextView
+                    android:layout_width="163dp"
+                    android:layout_height="80dp"
+                    android:text="VER AVISOS"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"/>
 
-        <TextView
-            android:id="@+id/Apellidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Apellidos" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:id="@+id/pd_apellidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
+        <!--Row 2-->
+        <!--Column 1-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/publicar_aviso"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="169dp"
+                android:layout_height="131dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="118dp"
+                    android:layout_height="67dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_person_add_black_24dp" />
 
-        <TextView
-            android:id="@+id/Descripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Descripcion" />
+                <TextView
+                    android:layout_width="163dp"
+                    android:layout_height="80dp"
+                    android:text="PUBLICAR AVISO"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"/>
 
-        <EditText
-            android:id="@+id/pd_descripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="102dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button"
-            android:onClick="getImage"
-            android:text="Subir Imagen" />
-
-        <ImageView
-            android:id="@+id/pd_imagen"
-            android:layout_width="298dp"
-            android:layout_height="132dp" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_persona_desaparecida"
-        android:background="@drawable/button"
-        android:textColor="@color/colorWhite"
-        android:layout_marginTop="30dp"
-        />
-
-    <TextView
-        android:id="@+id/registrar_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:text="@string/msg_para_registrarse"
-        android:textAlignment="center"
-        android:textColor="@color/design_default_color_primary" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
 </LinearLayout>
