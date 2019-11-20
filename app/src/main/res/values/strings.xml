@@ -17,4 +17,10 @@
     <string name="title_activity_maps">Map</string>
 
     <string name="msg_para_registrarse">¿No tienes cuenta? Registrate</string>
+    <string name="crear_boton" />
+    <string name="nombre_input" />
+    <string name="contrasena_input" />
+    <string name="recordar_check" />
+    <string name="olvidar_text" />
+    <string name="entrar_boton" />
 </resources>
