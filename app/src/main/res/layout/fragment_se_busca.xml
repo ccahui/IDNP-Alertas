@@ -90,7 +90,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button"
             android:onClick="getImage"
-            android:text="Subir Imagen" />
+            android:text="Subir Imagen"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/colorWhite"
+            />
 
         <ImageView
             android:id="@+id/pd_imagen"
