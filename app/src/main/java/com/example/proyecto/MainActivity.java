@@ -1,41 +1,28 @@
 package com.example.proyecto;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.proyecto.Activities.GenerarAlerta;
 import com.example.proyecto.Activities.PublicarAviso;
 import com.example.proyecto.Activities.VerAviso;
 import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
 public class MainActivity extends AppCompatActivity implements IComunicaFragments {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,101 +61,112 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
     }
 
 
-
     @Override
     public void robo() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        Intent intent = new Intent(this, GenerarAlerta.class);
+        startActivity(intent);
+        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         View v = inflater.inflate(R.layout.alerta_dialog, null);
         builder.setView(v);
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
-        Button signin = (Button) v.findViewById(R.id.entrar_boton);
+        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
         signin.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
+                        alert.dismiss();
 
 
                     }
                 }
 
         );
-
+*/
     }
 
     @Override
     public void vandalismo() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        Intent intent = new Intent(this, GenerarAlerta.class);
+        startActivity(intent);
+        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         View v = inflater.inflate(R.layout.alerta_dialog, null);
         builder.setView(v);
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
-        Button signin = (Button) v.findViewById(R.id.entrar_boton);
+        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
         signin.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
+                        alert.dismiss();
 
 
                     }
                 }
 
-        );
+        );*/
     }
 
     @Override
     public void pelea() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        Intent intent = new Intent(this, GenerarAlerta.class);
+        startActivity(intent);
+        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         View v = inflater.inflate(R.layout.alerta_dialog, null);
         builder.setView(v);
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
-        Button signin = (Button) v.findViewById(R.id.entrar_boton);
+        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
         signin.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
+                        alert.dismiss();
 
 
                     }
                 }
 
-        );
+        );*/
     }
 
     @Override
     public void acoso() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        Intent intent = new Intent(this, GenerarAlerta.class);
+        startActivity(intent);
+        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         View v = inflater.inflate(R.layout.alerta_dialog, null);
         builder.setView(v);
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
-        Button signin = (Button) v.findViewById(R.id.entrar_boton);
+        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
         signin.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
+                        alert.dismiss();
 
 
                     }
                 }
 
-        );
+        );*/
     }
 
     @Override
     public void ver_aviso() {
         ///Toast.makeText(MainActivity.this, "VER_AVISO", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, VerAviso.class);
-        startActivityForResult(intent,1);
+        startActivityForResult(intent, 1);
 
     }
 
@@ -176,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
     public void publicar_aviso() {
         //Toast.makeText(MainActivity.this, "PUBLICAR_AVISO", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, PublicarAviso.class);
-        startActivityForResult(intent,2);
+        startActivityForResult(intent, 2);
     }
 
 

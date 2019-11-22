@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,8 +61,10 @@ public class PublicarAviso extends AppCompatActivity {
                     is.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
+                    Toast.makeText(this,"Entro al catch FileNotFoundException", Toast.LENGTH_SHORT);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Toast.makeText(this,"Entro al catch IOException", Toast.LENGTH_SHORT);
                 }
             }
         }
