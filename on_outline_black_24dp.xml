@@ -1,0 +1,131 @@
+[33mcommit 22cb7833d94710d3481c662f5c4fd19fb787ad45[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: ccahui <kccahui@unsa.edu.pe>
+Date:   Wed Nov 20 16:54:47 2019 -0500
+
+    Cambio de color del boton
+
+[33mcommit 229ef81803b5f4ffcb3605a3b9441a963475dc43[m
+Author: cristian <cristian.ahuate@gmail.com>
+Date:   Wed Nov 20 10:07:40 2019 -0500
+
+    añadiendo splash a la aplicacion
+
+[33mcommit cfa2fd7fb57e67016935c3322ef79319a37e7858[m
+Author: JesusOCH <44234311+JesusOCH@users.noreply.github.com>
+Date:   Tue Nov 19 23:04:24 2019 -0500
+
+    Finalizando Funcionalidad de Alertas y de subir archivos
+
+[33mcommit fae5260acb217ec77ee33b118093a214146a47bf[m
+Author: JesusOCH <44234311+JesusOCH@users.noreply.github.com>
+Date:   Tue Nov 19 20:30:26 2019 -0500
+
+    Commit de prueba
+
+[33mcommit 10d1245e2a633c6326a5bf3225e28f339590f586[m
+Author: ccahui <kccahui@unsa.edu.pe>
+Date:   Tue Nov 19 10:37:29 2019 -0500
+
+    Google Maps Estableciendo una ubicacion
+
+[33mcommit eda96e05f6d754c93da30e08890da02586e4f75a[m[33m ([m[1;32mcopia[m[33m)[m
+Author: ccahui <kccahui@unsa.edu.pe>
+Date:   Tue Nov 19 10:04:22 2019 -0500
+
+    Fondo Blanco para los formularios
+
+[33mcommit 57717dd9680ffeba7347ff5487d066006784aa9f[m
+Author: ccahui <kccahui@unsa.edu.pe>
+Date:   Tue Nov 19 09:50:58 2019 -0500
+
+    Cambio en los colores de los botones
+
+[33mcommit 96a2f699db21724056035b222fdf6f1918f789ea[m
+Author: ccahui <kccahui@unsa.edu.pe>
+Date:   Tue Nov 19 09:26:36 2019 -0500
+
+    Cambiando el Tamaño de los fragmentos
+
+[33mcommit 200cbc2c2ef6ac47e920b3671c9995314b32c3c6[m
+Author: ccahui <kccahui@unsa.edu.pe>
+Date:   Mon Nov 18 22:49:33 2019 -0500
+
+    Navegacion hacia atras
+
+[33mcommit 9ab16c4ab62dc4b0c6a88a4bb52eaba3f6664880[m
+Author: JesusOCH <44234311+JesusOCH@users.noreply.github.com>
+Date:   Mon Nov 11 17:53:43 2019 -0500
+
+    Pantalla de Inicio con eventos de click, uso de interfaz
+
+[33mcommit 19267312eee27f006ae8f0f60da0d2b586abf3ac[m
+Author: JesusOCH <44234311+JesusOCH@users.noreply.github.com>
+Date:   Mon Nov 11 14:55:39 2019 -0500
+
+    Añadiendo recursos de fondo e icono y quitando recursos sin utilizar
+
+[33mcommit 6ff2e4ac23cb366a29c44c9d807bb25ffe5efb3b[m
+Author: JesusOCH <44234311+JesusOCH@users.noreply.github.com>
+Date:   Sun Nov 10 10:37:55 2019 -0500
+
+    Cambiando de estilo Primera Version
+
+[33mcommit 4767b1c0ba32329ca339db54fc9489668e8fcc41[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Wed Nov 6 18:41:18 2019 -0500
+
+    INTERFACES I
+
+[33mcommit a6337448df18f1e06f725ccab3555693f3a27624[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Wed Nov 6 17:23:30 2019 -0500
+
+    Mapa
+
+[33mcommit 9dd7aabd7d714cc2f055cde0bffbd9c08a5e8a26[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Wed Nov 6 17:03:52 2019 -0500
+
+    Solucion de errores
+
+[33mcommit 13cbde5a3b7165ec3e08189c1db4dd65486d52e5[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Wed Nov 6 17:02:25 2019 -0500
+
+    Alertas Principal
+
+[33mcommit dc0ce52496709866ab9828a30094f23f1731b9c2[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Wed Nov 6 16:58:46 2019 -0500
+
+    Resource de colores
+
+[33mcommit 53538b02cb282f570dcb3f92d9dd4cbdf64554a8[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Wed Nov 6 16:54:09 2019 -0500
+
+    Persona Desaparecida
+
+[33mcommit 3aa58d4198aff9905ff03b2734a8625aea3dfb3a[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Fri Nov 1 13:21:39 2019 -0500
+
+    Interfaz de Iniciar Sesion y Registrarse
+
+[33mcommit 9476315c19bd61e01e82f33668f68550205c35cb[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Mon Oct 21 17:09:27 2019 -0500
+
+    Vista Registrarse
+
+[33mcommit 88d6bbee233ca751534cb4ca75a46ff5a3f29dfa[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Mon Oct 21 16:33:14 2019 -0500
+
+    Vista de Login
+
+[33mcommit de81ea36a794b34eaa3f5fbee5bd4c28907be2ff[m
+Author: ccahui <kris_ti4n@hotmail.com>
+Date:   Sun Oct 13 11:15:03 2019 -0500
+
+    Alertas, INciar Sesion, Ubicacion: Bottom Navigation
