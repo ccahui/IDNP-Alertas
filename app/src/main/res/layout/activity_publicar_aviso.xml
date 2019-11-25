@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="25dp"
+    android:padding="15dp"
     tools:context=".Activities.PublicarAviso">
 
     <LinearLayout
@@ -89,27 +89,36 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton2"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="40dp"
-            app:icon="@drawable/ic_photo_black_24dp"
+            android:backgroundTint="@color/design_default_color_primary_dark"
             android:onClick="getImage"
-            android:text="Subir Imagen"
+            android:text="Imagen"
             android:textAllCaps="false"
-            android:backgroundTint="@color/design_default_color_primary_dark"/>
+            app:icon="@drawable/ic_photo_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pd_imagen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pd_imagen" />
 
         <ImageView
             android:id="@+id/pd_imagen"
             android:layout_width="260dp"
-            android:layout_height="120dp" />
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/materialButton2"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
