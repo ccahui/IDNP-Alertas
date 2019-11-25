@@ -57,17 +57,16 @@
 
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:layout_marginTop="10dp"
         android:id="@+id/button2"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_login"
-        android:textAllCaps="false"
-        android:background="@drawable/button"
         android:layout_marginHorizontal="90dp"
         android:textColor="@color/colorWhite"
-
+        android:backgroundTint="@color/colorButton"
         />
 
     <TextView

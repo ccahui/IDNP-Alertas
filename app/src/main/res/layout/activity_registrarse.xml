@@ -95,16 +95,17 @@
             android:inputType="textPassword" />
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_marginTop="10dp"
         android:id="@+id/btnRegistrarse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_registrarse"
-        android:textAllCaps="false"
         android:background="@drawable/button"
         android:layout_marginHorizontal="100dp"
         android:textColor="@color/colorWhite"
+        android:backgroundTint="@color/colorButton"
         />
 
     <ProgressBar

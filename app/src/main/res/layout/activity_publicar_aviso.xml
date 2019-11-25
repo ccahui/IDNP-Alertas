@@ -93,13 +93,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="36dp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginVertical="40dp"
+            app:icon="@drawable/ic_photo_black_24dp"
             android:onClick="getImage"
             android:text="Subir Imagen"
-            android:background="@color/colorButton"/>
+            android:textAllCaps="false"
+            android:backgroundTint="@color/design_default_color_primary_dark"/>
 
         <ImageView
             android:id="@+id/pd_imagen"
@@ -108,13 +111,16 @@
 
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingHorizontal="20dp"
         android:text="PUBLICAR AVISO"
-        android:layout_marginHorizontal="100dp"/>
+        android:layout_marginHorizontal="100dp"
+        app:backgroundTint="@color/colorButton"
+        />
 
 </LinearLayout>
