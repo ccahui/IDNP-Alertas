@@ -5,17 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="4"
-    android:background="@color/colorWhite"
+    android:paddingHorizontal="10dp"
+    android:weightSum="9"
     tools:context=".MainActivity">
 
-    <GridLayout
 
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="3"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"></LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:alignmentMode="alignMargins"
         android:columnCount="1"
-        android:padding="80dp">
+        android:columnOrderPreserved="false"
+        android:padding="1dp"
+        android:rowCount="5">
 
         <!--Row 1-->
         <!--Column 1-->
@@ -32,26 +41,26 @@
             app:cardElevation="8dp">
 
             <LinearLayout
-                android:layout_width="169dp"
-                android:layout_height="131dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="118dp"
-                    android:layout_height="67dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_weight="8"
                     android:src="@drawable/ic_perm_view_black_24dp" />
 
                 <TextView
-                    android:layout_width="163dp"
-                    android:layout_height="80dp"
-                    android:text="VER AVISOS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VER AVISO"
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -71,26 +80,26 @@
             app:cardElevation="8dp">
 
             <LinearLayout
-                android:layout_width="169dp"
-                android:layout_height="131dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="118dp"
-                    android:layout_height="67dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_weight="8"
                     android:src="@drawable/ic_person_add_black_24dp" />
 
                 <TextView
-                    android:layout_width="163dp"
-                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="PUBLICAR AVISO"
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

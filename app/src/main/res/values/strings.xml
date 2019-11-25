@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Sistema de Alertas</string>
     <string name="title_home">Alertas</string>
-    <string name="title_dashboard">Persona Desaparecida</string>
+    <string name="title_dashboard">Desaparecidos</string>
     <string name="title_notifications">Ubicación</string>
     <string name="title_login">Iniciar Sesión</string>
     <string name="title_registrarse">Registrarse</string>
-    <string name="title_persona_desaparecida">Persona Desaparecida</string>
+    <string name="title_persona_desaparecida">Desaparecidos</string>
 
     <string name="btn_login">Ingresar</string>
     <string name="btn_registrarse">Registrarse</string>
