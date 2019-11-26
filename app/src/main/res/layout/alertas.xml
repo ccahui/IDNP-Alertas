@@ -77,7 +77,8 @@
                     android:text="ROBO"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -115,7 +116,8 @@
                     android:text="VANDALISMO"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -154,7 +156,8 @@
                     android:text="PELEA"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -192,7 +195,8 @@
                     android:text="ACOSO"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

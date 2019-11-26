@@ -60,7 +60,8 @@
                     android:text="VER AVISO"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -94,12 +95,13 @@
                     android:src="@drawable/ic_person_add_black_24dp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PUBLICAR AVISO"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
