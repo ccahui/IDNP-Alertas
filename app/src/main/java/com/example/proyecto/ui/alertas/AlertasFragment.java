@@ -18,20 +18,32 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.example.proyecto.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.EventListener;
 
 public class AlertasFragment extends Fragment {
 
     private AlertasViewModel alertasViewModel;
-    View vista;
     Activity actividad;
     CardView robo, vandalismo, pelea, acoso;
     IComunicaFragments interfaceComunicaFragments;
 
+
+    private FirebaseAuth mAuth;
+    private TextView nombreDePerfil;
+    private DatabaseReference myRef;
+
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         alertasViewModel = ViewModelProviders.of(this).get(AlertasViewModel.class);
-        View root = inflater.inflate(R.layout.alertas, container, false);
 
-        vista = inflater.inflate(R.layout.alertas, container, false);
+
+        View vista = inflater.inflate(R.layout.alertas, container, false);
         robo = vista.findViewById(R.id.robo);
         robo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +75,41 @@ public class AlertasFragment extends Fragment {
                 interfaceComunicaFragments.acoso();
             }
         });
+
+
+
+        mAuth = FirebaseAuth.getInstance();
+        myRef =  FirebaseDatabase.getInstance().getReference();
+
+        nombreDePerfil = (TextView)vista.findViewById(R.id.textViewNombrePerfil);
+
+        getUserInfo();
         return vista;
     }
 
+    public void getUserInfo(){
+
+        String id = mAuth.getCurrentUser().getUid();
+        myRef.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+
+
+                    String nombre = dataSnapshot.child("nombre").getValue().toString();
+                    String apellido = dataSnapshot.child("apellido").getValue().toString();
+                    String email = dataSnapshot.child("email").getValue().toString();
+
+                    setNombreDePerfil(nombre + " " +apellido);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -74,4 +118,13 @@ public class AlertasFragment extends Fragment {
             interfaceComunicaFragments = (IComunicaFragments) actividad;
         }
     }
+
+    public void setNombreDePerfil(String _nombreDePerfil){
+        nombreDePerfil.setText(_nombreDePerfil);
+    }
+
+    public void toastShow(String msg){
+        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+    }
+
 }
