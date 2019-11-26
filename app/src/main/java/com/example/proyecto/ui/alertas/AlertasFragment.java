@@ -89,27 +89,37 @@ public class AlertasFragment extends Fragment {
 
     public void getUserInfo(){
 
-        String id = mAuth.getCurrentUser().getUid();
-        myRef.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+
+        if(usuarioLogeado()){
+            String id = mAuth.getCurrentUser().getUid();
+            myRef.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
 
 
-                    String nombre = dataSnapshot.child("nombre").getValue().toString();
-                    String apellido = dataSnapshot.child("apellido").getValue().toString();
-                    String email = dataSnapshot.child("email").getValue().toString();
+                        String nombre = dataSnapshot.child("nombre").getValue().toString();
+                        String apellido = dataSnapshot.child("apellido").getValue().toString();
+                        String email = dataSnapshot.child("email").getValue().toString();
 
-                    setNombreDePerfil(nombre + " " +apellido);
+                        setNombreDePerfil(nombre + " " +apellido);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
+
+
+
     }
+    public boolean usuarioLogeado(){
+        return mAuth.getCurrentUser() != null;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
