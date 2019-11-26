@@ -86,26 +86,35 @@ public class Registrarse extends AppCompatActivity {
                 toastShow("Los campos son obligatorios | password > 6");
                 return;
             }
-          //  spinnerShow();
-            mAuth.createUserWithEmailAndPassword(data.get("email"),data.get("password"))
+
+            String email = getEmail();
+            String password = getPassword();
+
+            mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
-
                                 Map<String, String> data = mapearData();
-                                toastShow("LOGIN REGISTRAR.");
                                 String userId = mAuth.getCurrentUser().getUid();
-                                toastShow(userId);
 
+                                myRef.child("usuarios").child(userId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            toastShow("EXITO REGISTRADO");
+                                        } else {
+                                            toastShow("FRACASO REGISTRADO");
+                                        }
+                                    }
+                                });
                                 resetData();
                             } else {
-                                toastShow("ERROR LOGIN.");
+                                toastShow("ERROR REGISTRARSE.");
                             }
                         }
                     });
-
     }
 
     public Map<String, String> mapearData(){
@@ -113,7 +122,8 @@ public class Registrarse extends AppCompatActivity {
         data.put("nombre", getNombre());
         data.put("apellido", getApellido());
         data.put("email", getEmail());
-        data.put("password",getPassword());
+        data.put("password", getPassword());
+
 
         return data;
     }
@@ -122,6 +132,8 @@ public class Registrarse extends AppCompatActivity {
         if("".equals(data.get("email")) || "".equals(data.get("password") ) || "".equals(data.get("nombre") ) || "".equals(data.get("nombre") )) {
             return false;
         }
+        if(getPassword().length() < 6)
+            return false;
         return true;
     }
 

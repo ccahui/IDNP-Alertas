@@ -21,9 +21,12 @@ import com.example.proyecto.Activities.PublicarAviso;
 import com.example.proyecto.Activities.VerAviso;
 import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements IComunicaFragments {
 
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -53,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
                 return (true);
 
             case R.id.logout:
-                Intent intent2 = new Intent(this, MapsActivity.class);
-                startActivity(intent2);
+                mAuth.signOut();
+               startActivity(new Intent(this, MainActivity.class));
                 return (true);
         }
         return (super.onOptionsItemSelected(item));
