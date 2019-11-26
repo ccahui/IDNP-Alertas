@@ -93,12 +93,20 @@ public class Registrarse extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
-
                                 Map<String, String> data = mapearData();
-                                toastShow("LOGIN REGISTRAR.");
                                 String userId = mAuth.getCurrentUser().getUid();
                                 toastShow(userId);
 
+                                myRef.child("usuarios").child(userId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            toastShow("EXITO REGISTRADO");
+                                        } else {
+                                            toastShow("FRACASO REGISTRADO");
+                                        }
+                                    }
+                                });
                                 resetData();
                             } else {
                                 toastShow("ERROR LOGIN.");
@@ -113,7 +121,7 @@ public class Registrarse extends AppCompatActivity {
         data.put("nombre", getNombre());
         data.put("apellido", getApellido());
         data.put("email", getEmail());
-        data.put("password",getPassword());
+        //data.put("password",getPassword());
 
         return data;
     }
