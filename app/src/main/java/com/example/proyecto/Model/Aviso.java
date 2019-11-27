@@ -9,6 +9,13 @@ public class Aviso {
     private String descripcion;
     private String imagen;
 
+    public Aviso(String nombre, String apellido, String descripcion, String imagen) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+    }
+
     public String getUid() {
         return uid;
     }

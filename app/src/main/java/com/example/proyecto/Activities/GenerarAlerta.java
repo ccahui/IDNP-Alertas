@@ -1,8 +1,5 @@
 package com.example.proyecto.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -18,11 +15,18 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.example.proyecto.MainActivity;
 import com.example.proyecto.R;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,9 +34,13 @@ import java.util.Locale;
 
 public class GenerarAlerta extends AppCompatActivity {
 
+    EditText editTextNombres;
+    EditText editTextApellidos;
     TextView mensaje1;
     TextView mensaje2;
     Button buttonAlert;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +48,20 @@ public class GenerarAlerta extends AppCompatActivity {
         setContentView(R.layout.activity_generar_alerta);
         mensaje1 = (TextView) findViewById(R.id.mensaje_id);
         mensaje2 = (TextView) findViewById(R.id.mensaje_id2);
+        editTextNombres = findViewById(R.id.AlertNombres);
+        editTextApellidos = findViewById(R.id.AlertApellidos);
+        inicializarFirebase();
         buttonAlert = (Button) findViewById(R.id.buttonAlerta);
         buttonAlert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GenerarAlerta.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(GenerarAlerta.this, MainActivity.class);
-                startActivity(intent);
+                if (editTextNombres.equals("") || editTextApellidos.equals("")) {
+                    validacion();
+                }else{
+                    Toast.makeText(GenerarAlerta.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(GenerarAlerta.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -55,6 +70,25 @@ public class GenerarAlerta extends AppCompatActivity {
         } else {
             locationStart();
         }
+    }
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+
+    private void validacion() {
+        String nom = editTextNombres.getText().toString();
+        String ape = editTextApellidos.getText().toString();
+        if (nom.equals(""))
+            editTextNombres.setError("Required");
+        if (ape.equals(""))
+            editTextApellidos.setError("Required");
+        }
+
+    private void limpiarcajas() {
+        editTextNombres.setText("");
+        editTextApellidos.setText("");
     }
 
     private void locationStart() {

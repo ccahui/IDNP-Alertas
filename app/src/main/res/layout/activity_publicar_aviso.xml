@@ -124,12 +124,11 @@
         android:id="@+id/buttonaviso"
         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginHorizontal="100dp"
         android:layout_weight="1"
         android:paddingHorizontal="20dp"
         android:text="PUBLICAR AVISO"
-        android:layout_marginHorizontal="100dp"
-        app:backgroundTint="@color/colorButton"
-        />
+        app:backgroundTint="@color/colorButton" />
 
 </LinearLayout>
