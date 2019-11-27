@@ -64,8 +64,11 @@ public class PublicarAviso extends AppCompatActivity {
                     aviso.setDescripcion(descripcion.getText().toString());
                     aviso.setImagen(fileURI.getLastPathSegment());
                     databaseReference.child("Aviso").child(aviso.getUid()).setValue(aviso);
+
                     limpiarcajas();
                 }
+                Toast.makeText(PublicarAviso.this,"Aviso Publicado",Toast.LENGTH_SHORT);
+
             }
         });
     }
