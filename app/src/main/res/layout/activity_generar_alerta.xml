@@ -58,13 +58,14 @@
     </LinearLayout>
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonAlerta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextApellidos"
         android:background="@color/colorButton"
         android:text="ENVIAR ALERTA"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:backgroundTint="@color/colorButton"
         android:textSize="20dp" />
 </LinearLayout>
