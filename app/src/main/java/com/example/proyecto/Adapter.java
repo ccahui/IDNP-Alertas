@@ -35,8 +35,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Avisosviewholder> {
         Aviso aviso = avisos.get(position);
         holder.textView_title.setText(aviso.getNombre());
         holder.textView_descripcion.setText(aviso.getDescripcion());
-       // Uri uri = Uri.parse(aviso.getImagen());
-        //holder.imageView.setImageURI(uri);
+        holder.imageView.setImageURI(Uri.parse(aviso.getImagen()));
     }
 
     @Override

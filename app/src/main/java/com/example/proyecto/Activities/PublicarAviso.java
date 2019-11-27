@@ -17,9 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
 
+import com.example.proyecto.MainActivity;
 import com.example.proyecto.Model.Aviso;
 import com.example.proyecto.R;
+import com.example.proyecto.ui.seBusca.SeBuscaFragment;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,6 +44,7 @@ public class PublicarAviso extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +58,7 @@ public class PublicarAviso extends AppCompatActivity {
         btnaviso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nombre.getText().toString().equals("") || apellido.getText().toString().equals("") || descripcion.getText().toString().equals(""))
+                if (nombre.getText().toString().equals("") || apellido.getText().toString().equals("") || descripcion.getText().toString().equals("") || img == null)
                     validacion();
                 else {
                     Aviso aviso = new Aviso();
@@ -64,10 +68,12 @@ public class PublicarAviso extends AppCompatActivity {
                     aviso.setDescripcion(descripcion.getText().toString());
                     aviso.setImagen(fileURI.getLastPathSegment());
                     databaseReference.child("Aviso").child(aviso.getUid()).setValue(aviso);
-
                     limpiarcajas();
+                    Intent intent = new Intent(PublicarAviso.this, MainActivity.class);
+                    startActivity(intent);
+
                 }
-                Toast.makeText(PublicarAviso.this,"Aviso Publicado",Toast.LENGTH_SHORT);
+
 
             }
         });

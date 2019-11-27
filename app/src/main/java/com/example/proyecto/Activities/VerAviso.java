@@ -30,7 +30,7 @@ public class VerAviso extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_aviso);
-        rv = (RecyclerView) findViewById(R.id.recycler_view);
+        /*rv = (RecyclerView) findViewById(R.id.recycler_view);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
 
@@ -56,7 +56,7 @@ public class VerAviso extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
 
 
