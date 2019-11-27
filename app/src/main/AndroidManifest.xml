@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.GenerarAlerta"></activity>
+        <activity android:name=".Activities.GenerarAlerta" android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -30,8 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.PublicarAviso" />
-        <activity android:name=".Activities.VerAviso" />
+        <activity android:name=".Activities.PublicarAviso" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Activities.VerAviso" android:parentActivityName=".MainActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
