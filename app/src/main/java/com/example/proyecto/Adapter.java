@@ -1,32 +1,39 @@
 package com.example.proyecto;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto.Model.Aviso;
 
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Avisosviewholder> {
-    List<Aviso> avisos;
+    ArrayList<Aviso> avisos;
+    private int resource;
 
-    public Adapter(List<Aviso> avisos) {
+    public Adapter(ArrayList<Aviso> avisos, int resource) {
         this.avisos = avisos;
+        this.resource = resource;
     }
 
     @NonNull
     @Override
     public Avisosviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_recycler, parent, false);
-        Avisosviewholder holder  = new Avisosviewholder(v);
-        return holder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
+        return new Avisosviewholder(view);
 
     }
 
@@ -43,16 +50,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Avisosviewholder> {
         return avisos.size();
     }
 
-    public static class Avisosviewholder extends RecyclerView.ViewHolder {
+    public class Avisosviewholder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView_title;
         TextView textView_descripcion;
+        View view;
 
-        public Avisosviewholder(@NonNull View itemView) {
-            super(itemView);
-            imageView = itemView.findViewById(R.id.image_paviso);
-            textView_title = itemView.findViewById(R.id.textView_title);
-            textView_descripcion = itemView.findViewById(R.id.textView_descripcion);
+        public Avisosviewholder(View view) {
+            super(view);
+            this.view = view;
+            this.imageView = view.findViewById(R.id.img_aviso);
+            this.textView_title = view.findViewById(R.id.textView_title);
+            this.textView_descripcion = view.findViewById(R.id.textView_descripcion);
+
         }
     }
 

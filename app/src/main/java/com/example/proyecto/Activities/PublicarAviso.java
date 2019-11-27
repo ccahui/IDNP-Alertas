@@ -30,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class PublicarAviso extends AppCompatActivity {
@@ -61,13 +63,13 @@ public class PublicarAviso extends AppCompatActivity {
                 if (nombre.getText().toString().equals("") || apellido.getText().toString().equals("") || descripcion.getText().toString().equals("") || img == null)
                     validacion();
                 else {
-                    Aviso aviso = new Aviso();
-                    aviso.setUid(UUID.randomUUID().toString());
-                    aviso.setNombre(nombre.getText().toString());
-                    aviso.setApellido(apellido.getText().toString());
-                    aviso.setDescripcion(descripcion.getText().toString());
-                    aviso.setImagen(fileURI.getLastPathSegment());
-                    databaseReference.child("Aviso").child(aviso.getUid()).setValue(aviso);
+                    Map<String,String>map= new HashMap<String,String>();
+                    map.put("UID",UUID.randomUUID().toString());
+                    map.put("Nombre",nombre.getText().toString());
+                    map.put("Apellido",apellido.getText().toString());
+                    map.put("Descripcion",descripcion.getText().toString());
+                    map.put("Imagen",fileURI.getPath());
+                    databaseReference.child("Avisos").child(UUID.randomUUID().toString()).setValue(map);
                     limpiarcajas();
                     Intent intent = new Intent(PublicarAviso.this, MainActivity.class);
                     startActivity(intent);
