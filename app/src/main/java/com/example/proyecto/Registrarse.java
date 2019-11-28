@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registrarse extends AppCompatActivity {
 
@@ -78,12 +80,9 @@ public class Registrarse extends AppCompatActivity {
     }
 
     public void eventoRegistrar(){
-        Map<String, String> data = mapearData();
 
-            if(!validar(data)) {
-                toastShow("Los campos son obligatorios | password > 6");
-                return;
-            }
+            if(validar()) {
+                Map<String, String> data = mapearData();
 
             String email = getEmail();
             String password = getPassword();
@@ -110,9 +109,10 @@ public class Registrarse extends AppCompatActivity {
                                 resetData();
                             } else {
                                 toastShow("ERROR REGISTRARSE.");
-                            }
-                        }
+                            }            }
+
                     });
+    }
     }
 
     public Map<String, String> mapearData(){
@@ -126,13 +126,41 @@ public class Registrarse extends AppCompatActivity {
         return data;
     }
 
-    public boolean validar(Map<String, String> data){
-        if("".equals(data.get("email")) || "".equals(data.get("password") ) || "".equals(data.get("nombre") ) || "".equals(data.get("nombre") )) {
-            return false;
+    public boolean validar(){
+
+        boolean valido = true;
+        String email = getEmail();
+        String password = getPassword();
+        String nombre = getNombre();
+        String apellido = getApellido();
+
+
+        if("".equals(nombre)){
+            this.nombre.setError("required");
+            valido = false;
         }
-        if(getPassword().length() < 6)
-            return false;
-        return true;
+        if("".equals(apellido)){
+            this.apellido.setError("required");
+            valido = false;
+        }
+
+        if ("".equals(email)){
+            this.email.setError("required");
+            valido  = false;
+        } else if(!validarEmail(email)){
+            this.email.setError("email no valido");
+            valido = false;
+        }
+
+        if ("".equals(password)) {
+            this.password.setError("Required");
+            valido = false;
+        } else if(password.length() < 6){
+            this.password.setError("password > 6");
+            valido = false;
+        }
+
+        return valido;
     }
 
     public void toastShow(String msg){
@@ -180,5 +208,20 @@ public class Registrarse extends AppCompatActivity {
     public void spinnerHide(){
         spinner.setVisibility(View.GONE);
     }
+
+    public boolean validarEmail(String email){
+
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(email);
+
+        if (mather.find() == true) {
+            return true;
+        }
+        return false;
+    }
+
 
 }

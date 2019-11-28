@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class IniciarSesion extends AppCompatActivity {
 
     private EditText email, password;
@@ -54,9 +57,10 @@ public class IniciarSesion extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(validacion()){
                 String email = getEmail();
                 String password = getPassword();
-
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -72,10 +76,38 @@ public class IniciarSesion extends AppCompatActivity {
                 });
 
             }
+            }
         });
 
 
     }
+
+    private boolean validacion() {
+
+        boolean valido = true;
+        String email = getEmail();
+        String password = getPassword();
+
+        if ("".equals(email)){
+            this.email.setError("required");
+            valido  = false;
+        } else if(!validarEmail(email)){
+            this.email.setError("email no valido");
+            valido = false;
+        }
+
+
+        if ("".equals(password)) {
+            this.password.setError("required");
+            valido = false;
+        } else if(password.length() < 6){
+            this.password.setError("password > 6");
+            valido = false;
+        }
+        return valido;
+
+    }
+
     public String getEmail(){
         return email.getText().toString();
     }
@@ -96,6 +128,20 @@ public class IniciarSesion extends AppCompatActivity {
     public void cargarUnUsuarioDePrueba(){
         setEmail("test@example.com");
         setPassword("12345678");
+    }
+
+    public boolean validarEmail(String email){
+
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(email);
+
+        if (mather.find() == true) {
+            return true;
+        }
+        return false;
     }
 
 }
