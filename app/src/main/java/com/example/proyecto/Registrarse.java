@@ -49,7 +49,6 @@ public class Registrarse extends AppCompatActivity {
 
        registrarse = (Button)findViewById(R.id.btnRegistrarse);
        ir_a_login = (TextView)findViewById(R.id.ir_a_login);
-       spinner = (ProgressBar)findViewById(R.id.progressBar);
 
 
         // Initialize Firebase Auth

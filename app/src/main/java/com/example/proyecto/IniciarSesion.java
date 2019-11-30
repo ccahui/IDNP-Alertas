@@ -3,6 +3,7 @@ package com.example.proyecto;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,9 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IniciarSesion extends AppCompatActivity {
+public class IniciarSesion extends AppCompatActivity implements View.OnClickListener {
 
     private EditText email, password;
+    ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
     @Override
@@ -30,68 +32,35 @@ public class IniciarSesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
 
-
         this.setTitle(R.string.title_login);
 
         mAuth = FirebaseAuth.getInstance();
 
-        email = (EditText)findViewById(R.id.editTextEmail);
-        password = (EditText)findViewById(R.id.editTextPassword);
+        email = (EditText) findViewById(R.id.editTextEmail);
+        password = (EditText) findViewById(R.id.editTextPassword);
 
         cargarUnUsuarioDePrueba();
 
         TextView registrarse = (TextView) findViewById(R.id.registrar);
-        Button login = (Button)findViewById(R.id.button_login);
+        Button login = (Button) findViewById(R.id.button_login);
 
+        login.setOnClickListener(this);
+        registrarse.setOnClickListener(this);
 
-
-        registrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(IniciarSesion.this, Registrarse.class);
-                startActivityForResult(intent, 200);
-            }
-        });
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(validacion()){
-                String email = getEmail();
-                String password = getPassword();
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            toastShow("LOGIN EXITO");
-                            startActivity(new Intent(IniciarSesion.this,  MainActivity.class));
-                            finish();
-
-                        } else {
-                            toastShow("Usuario o Password Incorrecto");
-                        }
-                    }
-                });
-
-            }
-            }
-        });
-
-
+        progressBar = findViewById(R.id.progressBarIniciarSesion);
+        progressBar.setVisibility(View.GONE);
     }
 
-    private boolean validacion() {
+    private boolean validacionDeDatos() {
 
         boolean valido = true;
         String email = getEmail();
         String password = getPassword();
 
-        if ("".equals(email)){
+        if ("".equals(email)) {
             this.email.setError("required");
-            valido  = false;
-        } else if(!validarEmail(email)){
+            valido = false;
+        } else if (!validarEmail(email)) {
             this.email.setError("email no valido");
             valido = false;
         }
@@ -100,7 +69,7 @@ public class IniciarSesion extends AppCompatActivity {
         if ("".equals(password)) {
             this.password.setError("required");
             valido = false;
-        } else if(password.length() < 6){
+        } else if (password.length() < 6) {
             this.password.setError("password > 6");
             valido = false;
         }
@@ -108,29 +77,32 @@ public class IniciarSesion extends AppCompatActivity {
 
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email.getText().toString();
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return password.getText().toString();
     }
-    public void toastShow(String msg){
+
+    public void toastShow(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 
-    public void setEmail(String _email){
+    public void setEmail(String _email) {
         email.setText(_email);
     }
-    public void setPassword(String _password){
+
+    public void setPassword(String _password) {
         password.setText(_password);
     }
 
-    public void cargarUnUsuarioDePrueba(){
+    public void cargarUnUsuarioDePrueba() {
         setEmail("test@example.com");
         setPassword("12345678");
     }
 
-    public boolean validarEmail(String email){
+    public boolean validarEmail(String email) {
 
         Pattern pattern = Pattern
                 .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -142,6 +114,52 @@ public class IniciarSesion extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_login:
+                if (validacionDeDatos()) {
+                    String email = getEmail();
+                    String password = getPassword();
+                    iniciarSesion(email, password);
+                }
+                break;
+
+            case R.id.registrar:
+                Intent intent = new Intent(IniciarSesion.this, Registrarse.class);
+                startActivityForResult(intent, 200);
+
+                break;
+        }
+    }
+
+    public void iniciarSesion(String email, String password) {
+
+    showProgressBar();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                hideProgresBar();
+                if (task.isSuccessful()) {
+                    toastShow("LOGIN EXITO");
+                    startActivity(new Intent(IniciarSesion.this, MainActivity.class));
+                    finish();
+
+                } else {
+                    toastShow("Usuario o Password Incorrecto");
+                }
+
+            }
+        });
+    }
+    public void showProgressBar(){
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgresBar(){
+        progressBar.setVisibility(View.GONE);
     }
 
 }
