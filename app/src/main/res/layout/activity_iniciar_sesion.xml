@@ -65,7 +65,7 @@
         android:progress="80"
     android:layout_gravity="center"
         android:backgroundTint="@color/colorButton"
-
+android:visibility="gone"
 
         />
 

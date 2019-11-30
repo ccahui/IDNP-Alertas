@@ -48,7 +48,6 @@ public class IniciarSesion extends AppCompatActivity implements View.OnClickList
         registrarse.setOnClickListener(this);
 
         progressBar = findViewById(R.id.progressBarIniciarSesion);
-        progressBar.setVisibility(View.GONE);
     }
 
     private boolean validacionDeDatos() {

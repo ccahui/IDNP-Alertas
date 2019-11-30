@@ -1,5 +1,6 @@
 package com.example.proyecto;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,16 +24,15 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Registrarse extends AppCompatActivity {
+public class Registrarse extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView ir_a_login;
     private EditText nombre, apellido, email, password;
-    private Button registrarse;
-    private ProgressBar spinner;
+    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,8 @@ public class Registrarse extends AppCompatActivity {
        email = (EditText)findViewById(R.id.inputEmail);
        password = (EditText)findViewById(R.id.inputPassword);
 
-       registrarse = (Button)findViewById(R.id.btnRegistrarse);
-       ir_a_login = (TextView)findViewById(R.id.ir_a_login);
+       Button registrarse = (Button)findViewById(R.id.btnRegistrarse);
+       TextView ir_a_login = (TextView)findViewById(R.id.ir_a_login);
 
 
         // Initialize Firebase Auth
@@ -59,23 +59,10 @@ public class Registrarse extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
-        //Progres Bar
-        spinnerHide();
+        ir_a_login.setOnClickListener(this);
+        registrarse.setOnClickListener(this);
 
-        ir_a_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                finish();//finishing activity
-            }
-        });
-
-        registrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                eventoRegistrar();
-        }});
+        progressBar = findViewById(R.id.progressBarRegistrarse);
     }
 
     public void eventoRegistrar(){
@@ -86,6 +73,7 @@ public class Registrarse extends AppCompatActivity {
             String email = getEmail();
             String password = getPassword();
 
+            showProgressBar();
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -98,8 +86,10 @@ public class Registrarse extends AppCompatActivity {
                                 myRef.child("usuarios").child(userId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
+                                        hideProgresBar();
                                         if(task.isSuccessful()){
                                             toastShow("EXITO REGISTRADO");
+                                            redirectToIniciarSesion();
                                         } else {
                                             toastShow("FRACASO REGISTRADO");
                                         }
@@ -107,8 +97,11 @@ public class Registrarse extends AppCompatActivity {
                                 });
                                 resetData();
                             } else {
+                                hideProgresBar();
                                 toastShow("ERROR REGISTRARSE.");
-                            }            }
+                            }
+
+                        }
 
                     });
     }
@@ -200,13 +193,7 @@ public class Registrarse extends AppCompatActivity {
         this.password.setText(_password);
     }
 
-    public void spinnerShow(){
-        spinner.setVisibility(View.VISIBLE);
-    }
 
-    public void spinnerHide(){
-        spinner.setVisibility(View.GONE);
-    }
 
     public boolean validarEmail(String email){
 
@@ -223,4 +210,29 @@ public class Registrarse extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnRegistrarse:
+                eventoRegistrar();
+                break;
+
+            case R.id.ir_a_login:
+                finish();//finishing activity
+                break;
+        }
+    }
+
+    public void showProgressBar(){
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgresBar(){
+        progressBar.setVisibility(View.GONE);
+    }
+
+    public void redirectToIniciarSesion(){
+        startActivity(new Intent(Registrarse.this, IniciarSesion.class));
+        finish();
+    }
 }
