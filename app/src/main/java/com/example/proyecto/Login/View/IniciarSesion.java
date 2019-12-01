@@ -106,17 +106,10 @@ public class IniciarSesion extends AppCompatActivity implements View.OnClickList
         return password.getText().toString();
     }
 
-    public void setEmail(String _email) {
-        email.setText(_email);
-    }
-
-    public void setPassword(String _password) {
-        password.setText(_password);
-    }
 
     public void cargarUnUsuarioDePrueba() {
-        setEmail("test@example.com");
-        setPassword("12345678");
+        email.setText("test@example.com");
+        password.setText("12345678");
     }
 
     private void toastShow(String error) {

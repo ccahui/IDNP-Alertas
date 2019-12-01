@@ -47,7 +47,7 @@ public class ModeloRegistrarseImp implements ModelRegistrarse {
                                 }
                             });
                         } else {
-                            listenerRegistrarse.onError("ERROR REGISTRARSE.");
+                            listenerRegistrarse.onError("Email registrado");
                         }
 
                     }

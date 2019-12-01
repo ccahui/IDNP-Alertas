@@ -8,33 +8,20 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proyecto.Login.View.IniciarSesion;
+import com.example.proyecto.MainActivity;
 import com.example.proyecto.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.proyecto.Registrarse.Presenter.PresenterRegistrarse;
+import com.example.proyecto.Registrarse.Presenter.PresenterRegistrarseImp;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class Registrarse extends AppCompatActivity implements View.OnClickListener{
+public class Registrarse extends AppCompatActivity implements View.OnClickListener, ViewRegistrarse{
 
     private EditText nombre, apellido, email, password;
     private ProgressBar progressBar;
-
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
-
+    private PresenterRegistrarse presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,167 +35,37 @@ public class Registrarse extends AppCompatActivity implements View.OnClickListen
        apellido = (EditText)findViewById(R.id.inputApellidos);
        email = (EditText)findViewById(R.id.inputEmail);
        password = (EditText)findViewById(R.id.inputPassword);
+        progressBar = findViewById(R.id.progressBarRegistrarse);
+        presenter = new PresenterRegistrarseImp(this);
 
        Button registrarse = (Button)findViewById(R.id.btnRegistrarse);
        TextView ir_a_login = (TextView)findViewById(R.id.ir_a_login);
-
-
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-
-
-        // Write a message to the database
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
-
         ir_a_login.setOnClickListener(this);
         registrarse.setOnClickListener(this);
 
-        progressBar = findViewById(R.id.progressBarRegistrarse);
+
+
     }
 
-    public void eventoRegistrar(){
-
-            if(validar()) {
-                Map<String, String> data = mapearData();
-
-            String email = getEmail();
-            String password = getPassword();
-
-            showProgressBar();
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                            if (task.isSuccessful()) {
-                                Map<String, String> data = mapearData();
-                                String userId = mAuth.getCurrentUser().getUid();
-
-                                myRef.child("usuarios").child(userId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        hideProgresBar();
-                                        if(task.isSuccessful()){
-                                            toastShow("EXITO REGISTRADO");
-                                            redirectToIniciarSesion();
-                                        } else {
-                                            toastShow("FRACASO REGISTRADO");
-                                        }
-                                    }
-                                });
-                                resetData();
-                            } else {
-                                hideProgresBar();
-                                toastShow("ERROR REGISTRARSE.");
-                            }
-
-                        }
-
-                    });
-    }
+    private void eventoRegistrar(){
+        presenter.registrarUsuario(getNombre(), getApellido(), getEmail(), getPassword());
     }
 
-    public Map<String, String> mapearData(){
-        Map<String, String> data = new HashMap<>();
-        data.put("nombre", getNombre());
-        data.put("apellido", getApellido());
-        data.put("email", getEmail());
-        data.put("password", getPassword());
-
-
-        return data;
-    }
-
-    public boolean validar(){
-
-        boolean valido = true;
-        String email = getEmail();
-        String password = getPassword();
-        String nombre = getNombre();
-        String apellido = getApellido();
-
-
-        if("".equals(nombre)){
-            this.nombre.setError("required");
-            valido = false;
-        }
-        if("".equals(apellido)){
-            this.apellido.setError("required");
-            valido = false;
-        }
-
-        if ("".equals(email)){
-            this.email.setError("required");
-            valido  = false;
-        } else if(!validarEmail(email)){
-            this.email.setError("email no valido");
-            valido = false;
-        }
-
-        if ("".equals(password)) {
-            this.password.setError("Required");
-            valido = false;
-        } else if(password.length() < 6){
-            this.password.setError("password > 6");
-            valido = false;
-        }
-
-        return valido;
-    }
-
-    public void toastShow(String msg){
+    private void toastShow(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 
-    public void resetData(){
-
-        setNombre("");
-        setApellido("");
-        setEmail("");
-        setPassword("");
-    }
-
-    public String getNombre(){
+    private String getNombre(){
         return nombre.getText().toString();
     }
-    public String getApellido(){
+    private String getApellido(){
         return apellido.getText().toString();
     }
-    public String getEmail(){
+    private String getEmail(){
         return email.getText().toString();
     }
-    public String getPassword(){
+    private String getPassword(){
         return password.getText().toString();
-    }
-
-    public void setNombre(String _nombre){
-        this.nombre.setText(_nombre);
-    }
-    public void setApellido(String _apellido){
-        this.apellido.setText(_apellido);
-    }
-    public void setEmail(String _email){
-        this.email.setText(_email);
-    }
-    public void setPassword(String _password){
-        this.password.setText(_password);
-    }
-
-
-
-    public boolean validarEmail(String email){
-
-        Pattern pattern = Pattern
-                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-
-        Matcher mather = pattern.matcher(email);
-
-        if (mather.find() == true) {
-            return true;
-        }
-        return false;
     }
 
 
@@ -225,16 +82,45 @@ public class Registrarse extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    public void showProgressBar(){
+    @Override
+    public void mostrarProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgresBar(){
+    @Override
+    public void ocultarProgressBar() {
         progressBar.setVisibility(View.GONE);
     }
 
-    public void redirectToIniciarSesion(){
-        startActivity(new Intent(Registrarse.this, IniciarSesion.class));
+    @Override
+    public void setEmailError(String error) {
+        email.setError(error);
+    }
+
+    @Override
+    public void setPassworError(String error) {
+        password.setError(error);
+    }
+
+    @Override
+    public void setNombreError(String error) {
+        nombre.setError(error);
+    }
+
+    @Override
+    public void setApellidoError(String error) {
+        apellido.setError(error);
+    }
+
+    @Override
+    public void onErrorRegistrarse(String error) {
+        toastShow(error);
+    }
+
+    @Override
+    public void redirecToHome() {
+        toastShow("REGISTRO EXITO");
+        startActivity(new Intent(Registrarse.this, MainActivity.class));
         finish();
     }
 }

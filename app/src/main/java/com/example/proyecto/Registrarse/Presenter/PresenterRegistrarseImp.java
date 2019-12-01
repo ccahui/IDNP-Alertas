@@ -20,6 +20,7 @@ public class PresenterRegistrarseImp implements PresenterRegistrarse, ListenerRe
     @Override
     public void registrarUsuario(String nombre, String apellido, String email, String password) {
         if(validarDatosDeUsuario(nombre, apellido, email, password)){
+            vista.mostrarProgressBar();
             modelo.registrarUsuario(nombre, apellido, email, password);
         }
     }
@@ -27,7 +28,7 @@ public class PresenterRegistrarseImp implements PresenterRegistrarse, ListenerRe
     @Override
     public void onSuccess() {
         vista.ocultarProgressBar();
-        vista.redirecToLogin();
+        vista.redirecToHome();
     }
 
     @Override

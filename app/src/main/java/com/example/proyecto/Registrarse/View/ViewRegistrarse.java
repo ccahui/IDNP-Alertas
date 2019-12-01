@@ -9,6 +9,6 @@ public interface ViewRegistrarse {
     public void setNombreError(String error);
     public void setApellidoError(String error);
     public void onErrorRegistrarse(String error);
-    public void redirecToLogin();
+    public void redirecToHome();
 
 }
