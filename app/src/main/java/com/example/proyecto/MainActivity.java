@@ -1,14 +1,9 @@
 package com.example.proyecto;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -20,6 +15,7 @@ import com.example.proyecto.Activities.GenerarAlerta;
 import com.example.proyecto.Activities.PublicarAviso;
 import com.example.proyecto.Activities.VerAviso;
 import com.example.proyecto.Interfaces.IComunicaFragments;
+import com.example.proyecto.Login.View.IniciarSesion;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
