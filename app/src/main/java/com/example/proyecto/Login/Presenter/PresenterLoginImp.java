@@ -53,7 +53,7 @@ public class PresenterLoginImp implements PresenterLogin, ListenerLogin {
         if (isEmpty(email)) {
             vista.setEmailError(REQUIRED);
             valido = false;
-        } else if (isEmailValid(email)) {
+        } else if (! isEmailValid(email)) {
             vista.setEmailError("email no valido");
             valido = false;
         }

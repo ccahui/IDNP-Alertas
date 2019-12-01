@@ -1,6 +1,5 @@
 package com.example.proyecto.Login.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,22 +11,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proyecto.Login.Presenter.PresenterLogin;
+import com.example.proyecto.Login.Presenter.PresenterLoginImp;
 import com.example.proyecto.MainActivity;
 import com.example.proyecto.R;
 import com.example.proyecto.Registrarse;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class IniciarSesion extends AppCompatActivity implements View.OnClickListener {
+public class IniciarSesion extends AppCompatActivity implements View.OnClickListener, ViewLogin {
 
     private EditText email, password;
-    ProgressBar progressBar;
-    private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
+    private PresenterLogin presenterLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,46 +31,71 @@ public class IniciarSesion extends AppCompatActivity implements View.OnClickList
 
         this.setTitle(R.string.title_login);
 
-        mAuth = FirebaseAuth.getInstance();
-
         email = (EditText) findViewById(R.id.editTextEmail);
         password = (EditText) findViewById(R.id.editTextPassword);
+        progressBar = findViewById(R.id.progressBarIniciarSesion);
 
-        cargarUnUsuarioDePrueba();
+        presenterLogin = new PresenterLoginImp(this);
 
         TextView registrarse = (TextView) findViewById(R.id.registrar);
         Button login = (Button) findViewById(R.id.button_login);
-
         login.setOnClickListener(this);
         registrarse.setOnClickListener(this);
 
-        progressBar = findViewById(R.id.progressBarIniciarSesion);
+        cargarUnUsuarioDePrueba();
+
     }
 
-    private boolean validacionDeDatos() {
 
-        boolean valido = true;
-        String email = getEmail();
-        String password = getPassword();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_login:
+                presenterLogin.login(getEmail(), getPassword());
+                break;
 
-        if ("".equals(email)) {
-            this.email.setError("required");
-            valido = false;
-        } else if (!validarEmail(email)) {
-            this.email.setError("email no valido");
-            valido = false;
+            case R.id.registrar:
+                redirecToRegistrarse();
+                break;
         }
+    }
+
+    @Override
+    public void mostrarProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void ocultarProgressBar() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setEmailError(String error) {
+        email.setError(error);
+    }
+
+    @Override
+    public void setPassworError(String error) {
+        password.setError(error);
+    }
+
+    @Override
+    public void onErrorLogin(String error) {
+        toastShow(error);
+    }
 
 
-        if ("".equals(password)) {
-            this.password.setError("required");
-            valido = false;
-        } else if (password.length() < 6) {
-            this.password.setError("password > 6");
-            valido = false;
-        }
-        return valido;
+    @Override
+    public void redirecToHome() {
+        toastShow("LOGIN EXITO");
+        startActivity(new Intent(IniciarSesion.this, MainActivity.class));
+        finish();
+    }
 
+    public void redirecToRegistrarse(){
+        Intent intent = new Intent(IniciarSesion.this, Registrarse.class);
+        startActivityForResult(intent, 200);
     }
 
     public String getEmail() {
@@ -84,10 +104,6 @@ public class IniciarSesion extends AppCompatActivity implements View.OnClickList
 
     public String getPassword() {
         return password.getText().toString();
-    }
-
-    public void toastShow(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
     }
 
     public void setEmail(String _email) {
@@ -103,64 +119,7 @@ public class IniciarSesion extends AppCompatActivity implements View.OnClickList
         setPassword("12345678");
     }
 
-    public boolean validarEmail(String email) {
-
-        Pattern pattern = Pattern
-                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-
-        Matcher mather = pattern.matcher(email);
-
-        if (mather.find() == true) {
-            return true;
-        }
-        return false;
+    private void toastShow(String error) {
+        Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
     }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button_login:
-                if (validacionDeDatos()) {
-                    String email = getEmail();
-                    String password = getPassword();
-                    iniciarSesion(email, password);
-                }
-                break;
-
-            case R.id.registrar:
-                Intent intent = new Intent(IniciarSesion.this, Registrarse.class);
-                startActivityForResult(intent, 200);
-
-                break;
-        }
-    }
-
-    public void iniciarSesion(String email, String password) {
-
-    showProgressBar();
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                hideProgresBar();
-                if (task.isSuccessful()) {
-                    toastShow("LOGIN EXITO");
-                    startActivity(new Intent(IniciarSesion.this, MainActivity.class));
-                    finish();
-
-                } else {
-                    toastShow("Usuario o Password Incorrecto");
-                }
-
-            }
-        });
-    }
-    public void showProgressBar(){
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    public void hideProgresBar(){
-        progressBar.setVisibility(View.GONE);
-    }
-
 }

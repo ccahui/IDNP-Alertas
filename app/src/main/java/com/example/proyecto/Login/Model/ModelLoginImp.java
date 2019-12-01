@@ -30,11 +30,8 @@ public class ModelLoginImp implements ModelLogin {
                 if (task.isSuccessful()) {
                     listenerLogin.onSuccess();
                 } else {
-                    if (task.getException() != null){
-                        String msgError = task.getException().getMessage();
-                        listenerLogin.onError(msgError);
-                    }
 
+                    listenerLogin.onError("Usuario o password incorrecto");
                 }
 
             }
