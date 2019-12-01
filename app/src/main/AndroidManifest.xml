@@ -51,7 +51,7 @@
             android:name=".Login.View.IniciarSesion"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Registrarse"
+            android:name=".Registrarse.View.Registrarse"
             android:parentActivityName=".Login.View.IniciarSesion" />
         <activity
             android:name=".MainActivity"

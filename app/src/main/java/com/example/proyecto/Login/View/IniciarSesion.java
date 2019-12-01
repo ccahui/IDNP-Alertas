@@ -15,7 +15,7 @@ import com.example.proyecto.Login.Presenter.PresenterLogin;
 import com.example.proyecto.Login.Presenter.PresenterLoginImp;
 import com.example.proyecto.MainActivity;
 import com.example.proyecto.R;
-import com.example.proyecto.Registrarse;
+import com.example.proyecto.Registrarse.View.Registrarse;
 
 
 public class IniciarSesion extends AppCompatActivity implements View.OnClickListener, ViewLogin {

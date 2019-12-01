@@ -1,10 +1,6 @@
 package com.example.proyecto.Login.Model;
 
-import android.content.Intent;
-
 import com.example.proyecto.Login.Presenter.ListenerLogin;
-import com.example.proyecto.Login.View.IniciarSesion;
-import com.example.proyecto.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

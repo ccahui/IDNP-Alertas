@@ -1,13 +1,9 @@
 package com.example.proyecto.Login.Presenter;
 
 import android.util.Patterns;
-import android.view.View;
-
 import com.example.proyecto.Login.Model.ModelLogin;
 import com.example.proyecto.Login.Model.ModelLoginImp;
 import com.example.proyecto.Login.View.ViewLogin;
-
-import java.util.regex.Pattern;
 
 public class PresenterLoginImp implements PresenterLogin, ListenerLogin {
 
