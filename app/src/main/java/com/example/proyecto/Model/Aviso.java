@@ -7,13 +7,13 @@ public class Aviso {
     private String nombre;
     private String apellido;
     private String descripcion;
-    private String imagen;
+    //private String imagen;
 
-    public Aviso(String nombre, String apellido, String descripcion, String imagen) {
+    public Aviso(String nombre, String apellido, String descripcion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
-        this.imagen = imagen;
+        //this.imagen = imagen;
     }
 
     public String getUid() {
@@ -48,11 +48,11 @@ public class Aviso {
         this.descripcion = descripcion;
     }
 
-    public String getImagen() {
+   /* public String getImagen() {
         return imagen;
     }
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
-    }
+    }*/
 }

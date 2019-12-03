@@ -31,7 +31,7 @@ public class AlertasFragment extends Fragment {
 
     private AlertasViewModel alertasViewModel;
     Activity actividad;
-    CardView robo, vandalismo, pelea, acoso;
+    CardView robo, vandalismo, pelea, acoso, desaparecidos, emergencia;
     IComunicaFragments interfaceComunicaFragments;
 
 
@@ -73,6 +73,22 @@ public class AlertasFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 interfaceComunicaFragments.acoso();
+            }
+        });
+
+        desaparecidos = vista.findViewById(R.id.desaparecido);
+        desaparecidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                interfaceComunicaFragments.desaparecidos();
+            }
+        });
+
+        emergencia = vista.findViewById(R.id.prueba);
+        emergencia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                interfaceComunicaFragments.emergencia();
             }
         });
 

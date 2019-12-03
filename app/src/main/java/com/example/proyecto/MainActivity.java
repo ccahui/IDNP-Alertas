@@ -23,10 +23,12 @@ import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements IComunicaFragments {
+public class MainActivity extends AppCompatActivity implements IComunicaFragments  {
 
 
     private FirebaseAuth mAuth;
+    LayoutInflater layoutInflater;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,6 +171,18 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
     }
 
     @Override
+    public void desaparecidos() {
+        Intent intent = new Intent(this, PublicarAviso.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void emergencia() {
+        Intent intent = new Intent(this, emergencia.class);
+        startActivity(intent);
+    }
+
+    /*@Override
     public void ver_aviso() {
         ///Toast.makeText(MainActivity.this, "VER_AVISO", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, VerAviso.class);
@@ -181,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
         //Toast.makeText(MainActivity.this, "PUBLICAR_AVISO", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, PublicarAviso.class);
         startActivityForResult(intent, 2);
-    }
+    }*/
 
 
 }
