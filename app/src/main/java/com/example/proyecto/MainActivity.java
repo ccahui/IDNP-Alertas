@@ -2,7 +2,6 @@ package com.example.proyecto;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.proyecto.Activities.GenerarAlerta;
 import com.example.proyecto.Activities.PublicarAviso;
 import com.example.proyecto.Interfaces.IComunicaFragments;
+import com.example.proyecto.Login.View.IniciarSesion;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
