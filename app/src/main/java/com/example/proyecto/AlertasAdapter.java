@@ -1,6 +1,5 @@
 package com.example.proyecto;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.proyecto.Model.Aviso;
+import com.example.proyecto.Model.Alerta;
 
 import java.util.ArrayList;
 
-public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosviewholder> {
-    ArrayList<Aviso> avisos;
+public class AlertasAdapter extends RecyclerView.Adapter<AlertasAdapter.Avisosviewholder> {
+    ArrayList<Alerta> alertas;
 
-    public AvisosAdapter(ArrayList<Aviso> avisos) {
-        this.avisos = avisos;
+    public AlertasAdapter(ArrayList<Alerta> alertas) {
+        this.alertas = alertas;
     }
 
     @NonNull
@@ -31,29 +30,34 @@ public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosview
 
     @Override
     public void onBindViewHolder(@NonNull Avisosviewholder holder, int position) {
-        holder.textView_nombre.setText(avisos.get(position).getNombre());
-        holder.textView_apellido.setText(avisos.get(position).getApellido());
-        holder.textView_descripcion.setText(avisos.get(position).getDescripcion());
-        //holder.imageView_row.setImageURI(Uri.parse(avisos.get(position).getUid()));
+        holder.textView_tipo.setText(alertas.get(position).getTipo());
+        holder.textView_nombre.setText(alertas.get(position).getNombres());
+        holder.textView_apellido.setText(alertas.get(position).getApellidos());
+        holder.textView_ubicacion.setText(alertas.get(position).getUbicacion());
+        holder.imageView_tipo.setImageDrawable(alertas.get(position).getImagen_tipo());
+
     }
 
     @Override
     public int getItemCount() {
-        return avisos.size();
+        return alertas.size();
     }
 
     public class Avisosviewholder extends RecyclerView.ViewHolder {
+        TextView textView_tipo;
         TextView textView_nombre;
         TextView textView_apellido;
-        TextView textView_descripcion;
-        //ImageView imageView_row;
+        TextView textView_ubicacion;
+        ImageView imageView_tipo;
 
         public Avisosviewholder(View view) {
             super(view);
+            this.textView_tipo = view.findViewById(R.id.textView_tipo);
             this.textView_nombre = view.findViewById(R.id.textView_nombre);
             this.textView_apellido = view.findViewById(R.id.textView_apellido);
-            this.textView_descripcion = view.findViewById(R.id.textView_descripcion);
-            //this.imageView_row = view.findViewById(R.id.imageView_row);
+            this.textView_ubicacion = view.findViewById(R.id.textView_descripcion);
+            this.imageView_tipo = view.findViewById(R.id.imageView_tipo);
+
 
         }
     }

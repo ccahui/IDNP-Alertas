@@ -24,13 +24,19 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.proyecto.MainActivity;
 import com.example.proyecto.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
 
 public class GenerarAlerta extends AppCompatActivity {
 
@@ -46,6 +52,7 @@ public class GenerarAlerta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generar_alerta);
+        final String tipo = getIntent().getStringExtra("Tipo");
         mensaje1 = (TextView) findViewById(R.id.mensaje_id);
         mensaje2 = (TextView) findViewById(R.id.mensaje_id2);
         editTextNombres = findViewById(R.id.AlertNombres);
@@ -55,9 +62,16 @@ public class GenerarAlerta extends AppCompatActivity {
         buttonAlert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editTextNombres.equals("") || editTextApellidos.equals("")) {
+                if (editTextNombres.getText().toString().equals("") || editTextApellidos.getText().toString().equals("")) {
                     validacion();
                 }else{
+                    Map<String,String> map= new HashMap<String,String>();
+                    map.put("Tipo",tipo);
+                    map.put("Nombre",editTextNombres.getText().toString());
+                    map.put("Apellido",editTextApellidos.getText().toString());
+                    map.put("Ubicacion",mensaje2.getText().toString());
+                    databaseReference.child("Alertas").child(UUID.randomUUID().toString()).setValue(map);
+                    limpiarcajas();
                     Toast.makeText(GenerarAlerta.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(GenerarAlerta.this, MainActivity.class);
                     startActivity(intent);
