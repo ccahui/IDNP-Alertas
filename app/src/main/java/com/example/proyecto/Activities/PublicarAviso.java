@@ -17,16 +17,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
 
+import com.example.proyecto.MainActivity;
 import com.example.proyecto.Model.Aviso;
 import com.example.proyecto.R;
+import com.example.proyecto.ui.seBusca.SeBuscaFragment;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class PublicarAviso extends AppCompatActivity {
@@ -38,8 +47,10 @@ public class PublicarAviso extends AppCompatActivity {
     private EditText apellido;
     private EditText descripcion;
     private Button btnaviso;
+    private StorageReference storageReference;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +60,7 @@ public class PublicarAviso extends AppCompatActivity {
         apellido = (EditText) findViewById(R.id.editTextApellidos);
         descripcion = (EditText) findViewById(R.id.editTextDescripcion);
         img = (ImageView) findViewById(R.id.pd_imagen);
+        storageReference = FirebaseStorage.getInstance().getReference();
         inicializarFirebase();
         btnaviso = (Button) findViewById(R.id.buttonaviso);
         btnaviso.setOnClickListener(new View.OnClickListener() {
@@ -57,17 +69,26 @@ public class PublicarAviso extends AppCompatActivity {
                 if (nombre.getText().toString().equals("") || apellido.getText().toString().equals("") || descripcion.getText().toString().equals(""))
                     validacion();
                 else {
-                    Aviso aviso = new Aviso();
-                    aviso.setUid(UUID.randomUUID().toString());
-                    aviso.setNombre(nombre.getText().toString());
-                    aviso.setApellido(apellido.getText().toString());
-                    aviso.setDescripcion(descripcion.getText().toString());
-                    aviso.setImagen(fileURI.getLastPathSegment());
-                    databaseReference.child("Aviso").child(aviso.getUid()).setValue(aviso);
+                    Map<String,String>map= new HashMap<String,String>();
+                    map.put("UID",UUID.randomUUID().toString());
+                    map.put("Nombre",nombre.getText().toString());
+                    map.put("Apellido",apellido.getText().toString());
+                    map.put("Descripcion",descripcion.getText().toString());
+                    map.put("Imagen",fileURI.getLastPathSegment());
+                    StorageReference filePath = storageReference.child("fotos").child(fileURI.getLastPathSegment());
+                    filePath.putFile(fileURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                        }
+                    });
+                    databaseReference.child("Avisos").child(UUID.randomUUID().toString()).setValue(map);
                     limpiarcajas();
+                    Intent intent = new Intent(PublicarAviso.this, MainActivity.class);
+                    startActivity(intent);
+
                 }
-                Toast.makeText(PublicarAviso.this,"Aviso Publicado",Toast.LENGTH_SHORT);
+
 
             }
         });
@@ -124,10 +145,8 @@ public class PublicarAviso extends AppCompatActivity {
                     is.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                    Toast.makeText(this,"Entro al catch FileNotFoundException", Toast.LENGTH_SHORT);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(this,"Entro al catch IOException", Toast.LENGTH_SHORT);
                 }
             }
         }

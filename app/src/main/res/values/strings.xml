@@ -1,20 +1,20 @@
 <resources>
-    <string name="app_name">Sistema de Alertas</string>
-    <string name="title_home">Alertas</string>
-    <string name="title_dashboard">Desaparecidos</string>
-    <string name="title_notifications">Ubicación</string>
+    <string name="app_name">AQP-ALERT</string>
+    <string name="title_home">Generar Alerta</string>
+    <string name="title_dashboard">Alertas Generadas</string>
+    <string name="title_notifications">Mapa</string>
     <string name="title_login">Iniciar Sesión</string>
     <string name="title_registrarse">Registrarse</string>
-    <string name="title_persona_desaparecida">Desaparecidos</string>
+    <string name="title_alertas">Alertas Generadas</string>
 
     <string name="btn_login">Ingresar</string>
     <string name="btn_registrarse">Registrarse</string>
-    <string name="btn_persona_desaparecida">Publicar Aviso</string>
+    <string name="btn_alerta">Generar Alerta</string>
 
 
     <string name="login">Iniciar Sesión</string>
     <string name="logout">Cerrar Sesión</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Mapa</string>
 
     <string name="msg_para_registrarse">¿No tienes cuenta? Registrate</string>
     <string name="crear_boton" />
@@ -23,4 +23,8 @@
     <string name="recordar_check" />
     <string name="olvidar_text" />
     <string name="entrar_boton" />
+    <string name="title_activity_mapa">Mapa</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

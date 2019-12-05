@@ -8,128 +8,143 @@
     android:padding="15dp"
     tools:context=".Activities.PublicarAviso">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="DATOS DE LA PERSONA DESAPARECIDA"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="32sp"
-            android:textColor="@color/colorBlack"></TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textViewNombres"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nombres"
-            android:textColor="@color/colorBlack"/>
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextNombres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DATOS DE LA PERSONA DESAPARECIDA"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="30sp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewApellidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Apellidos"
-            android:textColor="@color/colorBlack"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/editTextApellidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textViewNombres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nombres"
+                    android:textColor="@color/colorBlack" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/editTextNombres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/textViewDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Descripcion"
-            android:textColor="@color/colorBlack" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/editTextDescripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textViewDescripcion"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textViewApellidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Apellidos"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/editTextApellidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Descripcion"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/editTextDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/textViewApellidos"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_weight="1.2"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:inputType="text|textMultiLine" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/materialButton2"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/design_default_color_primary_dark"
+                    android:onClick="getImage"
+                    android:text="Imagen"
+                    android:textAllCaps="false"
+                    app:icon="@drawable/ic_photo_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/pd_imagen"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/pd_imagen" />
+
+                <ImageView
+                    android:id="@+id/pd_imagen"
+                    android:layout_width="260dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/materialButton2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonaviso"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="100dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="20dp"
+                android:text="PUBLICAR AVISO"
+                app:backgroundTint="@color/colorButton" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton2"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/design_default_color_primary_dark"
-            android:onClick="getImage"
-            android:text="Imagen"
-            android:textAllCaps="false"
-            app:icon="@drawable/ic_photo_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/pd_imagen"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/pd_imagen" />
+        </LinearLayout>
+    </ScrollView>
 
-        <ImageView
-            android:id="@+id/pd_imagen"
-            android:layout_width="260dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/materialButton2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonaviso"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingHorizontal="20dp"
-        android:text="PUBLICAR AVISO"
-        android:layout_marginHorizontal="100dp"
-        app:backgroundTint="@color/colorButton"
-        />
 
 </LinearLayout>

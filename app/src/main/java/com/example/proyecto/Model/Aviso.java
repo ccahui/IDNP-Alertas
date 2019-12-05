@@ -1,13 +1,18 @@
 package com.example.proyecto.Model;
 
-import android.net.Uri;
-
 public class Aviso {
     private String uid;
     private String nombre;
     private String apellido;
     private String descripcion;
     private String imagen;
+
+    public Aviso(String nombre, String apellido, String descripcion, String imagen) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+    }
 
     public String getUid() {
         return uid;
