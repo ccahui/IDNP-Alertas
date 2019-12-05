@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.proyecto.Activities.GenerarAlerta;
 import com.example.proyecto.Activities.PublicarAviso;
+import com.example.proyecto.Activities.VerAviso;
 import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.example.proyecto.Login.View.IniciarSesion;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(null);
-//        super.onCreate(savedInstanceState);
+        //super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -95,14 +96,14 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
     }
 
     @Override
-    public void desaparecidos() {
+    public void publicar_aviso() {
         Intent intent = new Intent(this, PublicarAviso.class);
         startActivity(intent);
     }
 
     @Override
-    public void emergencia() {
-        Intent intent = new Intent(this, Emergencia.class);
+    public void ver_aviso() {
+        Intent intent = new Intent(this, VerAviso.class);
         startActivity(intent);
     }
 }

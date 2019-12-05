@@ -15,7 +15,7 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.proyecto.ui.seBusca.SeBuscaFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_se_busca" />
+        tools:layout="@layout/fragment_alertas_generadas" />
 
     <fragment
         android:id="@+id/navigation_notifications"

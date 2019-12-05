@@ -27,7 +27,7 @@ public class AlertasFragment extends Fragment {
 
     private AlertasViewModel alertasViewModel;
     Activity actividad;
-    CardView robo, vandalismo, pelea, acoso, desaparecidos, emergencia;
+    CardView robo, vandalismo, pelea, acoso, publicar_aviso, ver_aviso;
     IComunicaFragments interfaceComunicaFragments;
 
 
@@ -72,19 +72,19 @@ public class AlertasFragment extends Fragment {
             }
         });
 
-        desaparecidos = vista.findViewById(R.id.desaparecido);
-        desaparecidos.setOnClickListener(new View.OnClickListener() {
+        publicar_aviso = vista.findViewById(R.id.publicar_aviso);
+        publicar_aviso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                interfaceComunicaFragments.desaparecidos();
+                interfaceComunicaFragments.publicar_aviso();
             }
         });
 
-        emergencia = vista.findViewById(R.id.prueba);
-        emergencia.setOnClickListener(new View.OnClickListener() {
+        ver_aviso = vista.findViewById(R.id.ver_aviso);
+        ver_aviso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                interfaceComunicaFragments.emergencia();
+                interfaceComunicaFragments.ver_aviso();
             }
         });
 

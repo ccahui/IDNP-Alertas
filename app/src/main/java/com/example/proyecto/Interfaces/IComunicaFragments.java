@@ -6,6 +6,6 @@ public interface IComunicaFragments {
     public void vandalismo();
     public void pelea();
     public void acoso();
-    public void desaparecidos();
-    public void emergencia();
+    public void publicar_aviso();
+    public void ver_aviso();
 }

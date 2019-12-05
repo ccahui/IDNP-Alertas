@@ -36,11 +36,11 @@ public class SeBuscaFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_se_busca, container, false);
+        View vista = inflater.inflate(R.layout.fragment_alertas_generadas, container, false);
         final Drawable[] drawable = new Drawable[1];
         alertas = new ArrayList<>();
         imageView = vista.findViewById(R.id.imageView_tipo);
-        recyclerView = vista.findViewById(R.id.recycler_view);
+        recyclerView = vista.findViewById(R.id.recycler_view_alertas );
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Alertas").addValueEventListener(new ValueEventListener() {

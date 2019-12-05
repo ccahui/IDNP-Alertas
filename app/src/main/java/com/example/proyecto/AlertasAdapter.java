@@ -13,7 +13,7 @@ import com.example.proyecto.Model.Alerta;
 
 import java.util.ArrayList;
 
-public class AlertasAdapter extends RecyclerView.Adapter<AlertasAdapter.Avisosviewholder> {
+public class AlertasAdapter extends RecyclerView.Adapter<AlertasAdapter.Alertasviewholder> {
     ArrayList<Alerta> alertas;
 
     public AlertasAdapter(ArrayList<Alerta> alertas) {
@@ -22,14 +22,14 @@ public class AlertasAdapter extends RecyclerView.Adapter<AlertasAdapter.Avisosvi
 
     @NonNull
     @Override
-    public Avisosviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_recycler, parent, false);
-        return new Avisosviewholder(view);
+    public Alertasviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_alertas, parent, false);
+        return new Alertasviewholder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Avisosviewholder holder, int position) {
+    public void onBindViewHolder(@NonNull Alertasviewholder holder, int position) {
         holder.textView_tipo.setText(alertas.get(position).getTipo());
         holder.textView_nombre.setText(alertas.get(position).getNombres());
         holder.textView_apellido.setText(alertas.get(position).getApellidos());
@@ -43,14 +43,14 @@ public class AlertasAdapter extends RecyclerView.Adapter<AlertasAdapter.Avisosvi
         return alertas.size();
     }
 
-    public class Avisosviewholder extends RecyclerView.ViewHolder {
+    public class Alertasviewholder extends RecyclerView.ViewHolder {
         TextView textView_tipo;
         TextView textView_nombre;
         TextView textView_apellido;
         TextView textView_ubicacion;
         ImageView imageView_tipo;
 
-        public Avisosviewholder(View view) {
+        public Alertasviewholder(View view) {
             super(view);
             this.textView_tipo = view.findViewById(R.id.textView_tipo);
             this.textView_nombre = view.findViewById(R.id.textView_nombre);

@@ -203,7 +203,7 @@
         <!--Row 3-->
         <!--Column 1-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/desaparecido"
+            android:id="@+id/publicar_aviso"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -231,18 +231,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="DESAPARECIDOS"
+                    android:text="PUBLICAR AVISO"
                     android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <!--Column 2-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/prueba"
+            android:id="@+id/ver_aviso"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -270,7 +270,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ver Desaparecidos"
+                    android:text="VER AVISOS"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
