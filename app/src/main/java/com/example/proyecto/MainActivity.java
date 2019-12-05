@@ -1,14 +1,10 @@
 package com.example.proyecto;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -18,7 +14,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.proyecto.Activities.GenerarAlerta;
 import com.example.proyecto.Activities.PublicarAviso;
-import com.example.proyecto.Activities.VerAviso;
 import com.example.proyecto.Interfaces.IComunicaFragments;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,101 +68,24 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
     public void robo() {
         Intent intent = new Intent(this, GenerarAlerta.class);
         startActivity(intent);
-        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View v = inflater.inflate(R.layout.alerta_dialog, null);
-        builder.setView(v);
-        final AlertDialog alert = builder.create();
-        alert.show();
-        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
-        signin.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
-                        alert.dismiss();
-
-
-                    }
-                }
-
-        );
-*/
     }
 
     @Override
     public void vandalismo() {
         Intent intent = new Intent(this, GenerarAlerta.class);
         startActivity(intent);
-        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View v = inflater.inflate(R.layout.alerta_dialog, null);
-        builder.setView(v);
-        final AlertDialog alert = builder.create();
-        alert.show();
-        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
-        signin.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
-                        alert.dismiss();
-
-
-                    }
-                }
-
-        );*/
     }
 
     @Override
     public void pelea() {
         Intent intent = new Intent(this, GenerarAlerta.class);
         startActivity(intent);
-        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View v = inflater.inflate(R.layout.alerta_dialog, null);
-        builder.setView(v);
-        final AlertDialog alert = builder.create();
-        alert.show();
-        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
-        signin.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
-                        alert.dismiss();
-
-
-                    }
-                }
-
-        );*/
     }
 
     @Override
     public void acoso() {
         Intent intent = new Intent(this, GenerarAlerta.class);
         startActivity(intent);
-        /*final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View v = inflater.inflate(R.layout.alerta_dialog, null);
-        builder.setView(v);
-        final AlertDialog alert = builder.create();
-        alert.show();
-        Button signin = (Button) v.findViewById(R.id.buttonAlerta);
-        signin.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "ALERTA ENVIADA", Toast.LENGTH_SHORT).show();
-                        alert.dismiss();
-
-
-                    }
-                }
-
-        );*/
     }
 
     @Override
@@ -178,24 +96,7 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
 
     @Override
     public void emergencia() {
-        Intent intent = new Intent(this, emergencia.class);
+        Intent intent = new Intent(this, Emergencia.class);
         startActivity(intent);
     }
-
-    /*@Override
-    public void ver_aviso() {
-        ///Toast.makeText(MainActivity.this, "VER_AVISO", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, VerAviso.class);
-        startActivityForResult(intent, 1);
-
-    }
-
-    @Override
-    public void publicar_aviso() {
-        //Toast.makeText(MainActivity.this, "PUBLICAR_AVISO", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, PublicarAviso.class);
-        startActivityForResult(intent, 2);
-    }*/
-
-
 }

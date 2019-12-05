@@ -1,8 +1,10 @@
 package com.example.proyecto;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,7 @@ public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosview
         holder.textView_nombre.setText(avisos.get(position).getNombre());
         holder.textView_apellido.setText(avisos.get(position).getApellido());
         holder.textView_descripcion.setText(avisos.get(position).getDescripcion());
+        //holder.imageView_row.setImageURI(Uri.parse(avisos.get(position).getUid()));
     }
 
     @Override
@@ -43,12 +46,14 @@ public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosview
         TextView textView_nombre;
         TextView textView_apellido;
         TextView textView_descripcion;
+        //ImageView imageView_row;
 
         public Avisosviewholder(View view) {
             super(view);
             this.textView_nombre = view.findViewById(R.id.textView_nombre);
             this.textView_apellido = view.findViewById(R.id.textView_apellido);
             this.textView_descripcion = view.findViewById(R.id.textView_descripcion);
+            //this.imageView_row = view.findViewById(R.id.imageView_row);
 
         }
     }

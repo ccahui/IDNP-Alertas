@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@android:color/background_light">
+
+
+    <ImageView
+        android:id="@+id/imageView_row"
+        android:layout_width="93dp"
+        android:layout_height="99dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="2dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:maxWidth="74dp"
+        android:maxHeight="35dp"
+        android:src="@drawable/ic_warning_black_24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView_nombre"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="textEnd"
-            android:text="TextView" />
+            android:text="Nombres"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#620019"
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/textView_apellido"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="textStart"
-            android:text="TextView" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:text="Apellidos"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#620019"
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/textView_descripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:text="TextView" />
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:text="Descripcion/Ubicacion" />
+
     </LinearLayout>
 
 </LinearLayout>

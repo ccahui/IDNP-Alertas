@@ -90,7 +90,7 @@
                     android:id="@+id/editTextDescripcion"
                     android:layout_width="wrap_content"
                     android:layout_height="150dp"
-                    android:layout_below="@id/textViewDescripcion"
+                    android:layout_below="@id/textViewApellidos"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_weight="1.2"
