@@ -270,11 +270,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="LINEAS DE EMERGENCIA"
+                    android:text="Ver Desaparecidos"
                     android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
