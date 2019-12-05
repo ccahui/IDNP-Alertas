@@ -8,6 +8,4 @@ public interface IComunicaFragments {
     public void acoso();
     public void desaparecidos();
     public void emergencia();
-    //public void ver_aviso();
-    //public void publicar_aviso();
 }

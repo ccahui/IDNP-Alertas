@@ -48,8 +48,8 @@ public class PublicarAviso extends AppCompatActivity {
     private EditText descripcion;
     private Button btnaviso;
     private StorageReference storageReference;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
 
     @Override

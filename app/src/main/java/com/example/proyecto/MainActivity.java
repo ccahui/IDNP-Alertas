@@ -2,6 +2,7 @@ package com.example.proyecto;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(null);
+//        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -67,24 +69,28 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
     @Override
     public void robo() {
         Intent intent = new Intent(this, GenerarAlerta.class);
+        intent.putExtra("Tipo","Robo");
         startActivity(intent);
     }
 
     @Override
     public void vandalismo() {
         Intent intent = new Intent(this, GenerarAlerta.class);
+        intent.putExtra("Tipo","Vandalismo");
         startActivity(intent);
     }
 
     @Override
     public void pelea() {
         Intent intent = new Intent(this, GenerarAlerta.class);
+        intent.putExtra("Tipo","Pelea");
         startActivity(intent);
     }
 
     @Override
     public void acoso() {
         Intent intent = new Intent(this, GenerarAlerta.class);
+        intent.putExtra("Tipo","Acoso");
         startActivity(intent);
     }
 
