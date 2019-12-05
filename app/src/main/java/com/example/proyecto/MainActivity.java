@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements IComunicaFragment
 
 
     private FirebaseAuth mAuth;
-    LayoutInflater layoutInflater;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
