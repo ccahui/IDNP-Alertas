@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -87,6 +88,7 @@ public class PublicarAviso extends AppCompatActivity {
                     });
                     databaseReference.child("Avisos").child(UUID.randomUUID().toString()).setValue(map);
                     limpiarcajas();
+                    Toast.makeText(PublicarAviso.this,"Aviso Publicado",Toast.LENGTH_SHORT);
                     Intent intent = new Intent(PublicarAviso.this, MainActivity.class);
                     startActivity(intent);
 
