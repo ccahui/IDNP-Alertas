@@ -5,13 +5,23 @@ public class Aviso {
     private String nombre;
     private String apellido;
     private String descripcion;
+    private String telefono;
     private String imagen;
 
-    public Aviso(String nombre, String apellido, String descripcion, String imagen) {
+
+    public Aviso(String nombre, String apellido, String descripcion, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
-        this.imagen = imagen;
+        this.telefono = telefono;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getUid() {

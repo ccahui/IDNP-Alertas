@@ -44,6 +44,7 @@ public class GenerarAlerta extends AppCompatActivity {
     EditText editTextApellidos;
     TextView mensaje1;
     TextView mensaje2;
+    String latitud,longitud;
     Button buttonAlert;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -69,6 +70,8 @@ public class GenerarAlerta extends AppCompatActivity {
                     map.put("Tipo",tipo);
                     map.put("Nombre",editTextNombres.getText().toString());
                     map.put("Apellido",editTextApellidos.getText().toString());
+                    map.put("Latitud",latitud);
+                    map.put("Longitud",longitud);
                     map.put("Ubicacion",mensaje2.getText().toString());
                     databaseReference.child("Alertas").child(UUID.randomUUID().toString()).setValue(map);
                     limpiarcajas();
@@ -167,8 +170,8 @@ public class GenerarAlerta extends AppCompatActivity {
         public void onLocationChanged(Location loc) {
             // Este metodo se ejecuta cada vez que el GPS recibe nuevas coordenadas
             // debido a la deteccion de un cambio de ubicacion
-            loc.getLatitude();
-            loc.getLongitude();
+            latitud = String.valueOf(loc.getLatitude());
+            longitud = String.valueOf(loc.getLongitude());
             String Text = "Mi ubicacion actual es: " + "\n Lat = "
                     + loc.getLatitude() + "\n Long = " + loc.getLongitude();
             mensaje1.setText(Text);

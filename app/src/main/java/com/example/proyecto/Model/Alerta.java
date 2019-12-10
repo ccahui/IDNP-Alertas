@@ -10,13 +10,6 @@ public class Alerta {
     private String ubicacion;
     private Drawable imagen_tipo;
 
-    public Alerta(String tipo, String nombres, String apellidos, String ubicacion) {
-        this.tipo = tipo;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.ubicacion = ubicacion;
-    }
-
     public Alerta(String tipo, String nombres, String apellidos, String ubicacion, Drawable imagen_tipo ) {
         this.tipo = tipo;
         this.nombres = nombres;
