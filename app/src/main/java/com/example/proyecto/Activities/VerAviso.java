@@ -54,7 +54,7 @@ public class VerAviso extends AppCompatActivity implements AvisosAdapter.OnItemC
 
         mAvisos = new ArrayList<>();
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("fotos_avisos");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("datos_aviso");
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

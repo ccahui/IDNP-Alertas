@@ -42,16 +42,16 @@ public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosview
         holder.textView_nombre_aviso.setText(aviso.get(position).getNombre());
         holder.textView_apellido_aviso.setText(aviso.get(position).getApellido());
         holder.textView_descripcion_aviso.setText(aviso.get(position).getDescripcion());
-        /*Glide.with(mContext)
+        Glide.with(mContext)
                 .load(aviso.get(position).getmImageUrl())
                 .centerCrop()
-                .into(holder.imageView);*/
-        Picasso.get()
+                .into(holder.imageView);
+        /*Picasso.get()
                 .load(aviso.get(position).getmImageUrl())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()
-                .into(holder.imageView);
+                .into(holder.imageView);*/
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -25,12 +24,10 @@ import com.example.proyecto.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -76,8 +73,8 @@ public class PublicarAviso extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         avisos = new ArrayList<>();
 
-        mStorageref = FirebaseStorage.getInstance().getReference("fotos_avisos");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("fotos_avisos");
+        mStorageref = FirebaseStorage.getInstance().getReference("fotos_aviso");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("datos_aviso");
 
         subir_imagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +152,7 @@ public class PublicarAviso extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-           Glide.with(this).load(mImageUri).into(img);
+            Glide.with(this).load(mImageUri).into(img);
             //Picasso.get().load(mImageUri).into(img);
         }
     }
