@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -21,8 +22,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.proyecto.Model.Aviso;
 import com.example.proyecto.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -169,9 +173,34 @@ public class PublicarAviso extends AppCompatActivity {
             final String tel = telefono.getText().toString();
 
             if (mImageUri != null) {
+
                 StorageReference fileReference = mStorageref.child(System.currentTimeMillis()
                         + "." + getFileExtension(mImageUri));
+                mStorageref.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()){
+                            throw task.getException();
+                        }
 
+                        return mStorageref.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+                            Uri uri = task.getResult();
+                            Log.e("URI", uri.toString()); //url para descargar foto
+                            GuardarBaseDatos(uri);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(PublicarAviso.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                /*
                 storageTask = fileReference.putFile(mImageUri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
@@ -184,10 +213,7 @@ public class PublicarAviso extends AppCompatActivity {
                                     }
                                 }, 5000);
                                 Toast.makeText(PublicarAviso.this, "Upload successful", Toast.LENGTH_LONG).show();
-                                Aviso avisos = new Aviso(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),nom,ape,des,tel);
-                                String uploadId = mDatabaseRef.push().getKey();
-                                limpiarcajas();
-                                mDatabaseRef.child(uploadId).setValue(avisos);
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -203,6 +229,7 @@ public class PublicarAviso extends AppCompatActivity {
                                 progressBar.setProgress((int) progress);
                             }
                         });
+                */
             } else {
                 Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
             }
@@ -228,6 +255,12 @@ public class PublicarAviso extends AppCompatActivity {
         apellido.setText("");
         descripcion.setText("");
         telefono.setText("");
+    }
+    private void GuardarBaseDatos(Uri uri){
+        Aviso avisos = new Aviso(uri.toString(),nombre.getText().toString(),apellido.getText().toString(), descripcion.getText().toString(),telefono.getText().toString());
+        String uploadId = mDatabaseRef.push().getKey();
+        limpiarcajas();
+        mDatabaseRef.child(uploadId).setValue(avisos);
     }
 
     /*private void inicializarFirebase() {
