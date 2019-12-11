@@ -10,9 +10,11 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +28,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.Transformation;
 import com.example.proyecto.Activities.VerAviso;
 import com.example.proyecto.AvisosAdapter;
+import com.example.proyecto.CustomInfoWindowAdapter;
 import com.example.proyecto.MainActivity;
 import com.example.proyecto.Model.Aviso;
 import com.example.proyecto.R;
@@ -117,7 +122,8 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
 
                 mAvisos = new ArrayList<>();
 
-                mDatabaseRef = FirebaseDatabase.getInstance().getReference("fotos_avisos");
+                mDatabaseRef = FirebaseDatabase.getInstance().getReference("datos_aviso");
+
                 mDatabaseRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -133,16 +139,23 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
                         *
                          */
                 if (dataSnapshot.exists()) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        /*
-                        textView_nombre_aviso = ds.child("Nombre").getValue().toString();
-                        textView_apellido_aviso = ds.child("Apellido").getValue().toString();
-                        textView_descripcion_aviso = ds.child("Descripcion").getValue().toString();
-                        textView_telefono = ds.child("Telefono").getValue().toString();
-                        //avisos.add(new Aviso(textView_nombre_aviso, textView_apellido_aviso, textView_descripcion_aviso, textView_telefono));
-                        */
+                    final LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                    for (Aviso aviso : mAvisos) {
+
+                        Log.e("DATO BASe DE DATOS", aviso.getApellido());
+                        LatLng customMarkerLocation = new LatLng(-16.406839, -71.52239);
+                        mMap.addMarker(new MarkerOptions().position(customMarkerLocation).
+                                icon(BitmapDescriptorFactory.fromBitmap(
+                                        createCustomMarker(getContext(),R.drawable.persona_desconocida,aviso.getNombre(),aviso.getmImageUrl())))).setTitle(aviso.getDescripcion());
+
+                        builder.include(customMarkerLocation); //Taking Point A (First LatLng)
+                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(LayoutInflater.from(getActivity()),getContext(), aviso));
 
                     }
+                    LatLngBounds bounds = builder.build();
+                    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 200);
+                    mMap.moveCamera(cu);
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
                     /*
                     AvisosAdapter avisosAdapter = new AvisosAdapter(avisos);
                     rv.setAdapter(avisosAdapter);
@@ -160,13 +173,11 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
                 });
 
 
-                LatLng customMarkerLocationOne = new LatLng(-16.406839, -71.52239);
+                /*
                 LatLng customMarkerLocationTwo = new LatLng(-16.406839, -71.52240);
                 LatLng customMarkerLocationThree = new LatLng(-16.406839, -71.52245);
                 LatLng customMarkerLocationFour = new LatLng(-16.406839, -71.52250);
-                mMap.addMarker(new MarkerOptions().position(customMarkerLocationOne).
-                        icon(BitmapDescriptorFactory.fromBitmap(
-                                createCustomMarker(getContext(),R.drawable.acoso,"Manish")))).setTitle("iPragmatech Solutions Pvt Lmt");
+
                 mMap.addMarker(new MarkerOptions().position(customMarkerLocationTwo).
                         icon(BitmapDescriptorFactory.fromBitmap(
                                 createCustomMarker(getContext(),R.drawable.acoso,"Narender")))).setTitle("Hotel Nirulas Noida");
@@ -179,13 +190,11 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
                                 createCustomMarker(getContext(),R.drawable.acoso,"Nupur")))).setTitle("Subway Sector 16 Noida");
 
                 //LatLngBound will cover all your marker on Google Maps
-                LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                builder.include(customMarkerLocationOne); //Taking Point A (First LatLng)
+
                 builder.include(customMarkerLocationThree); //Taking Point B (Second LatLng)
-                LatLngBounds bounds = builder.build();
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 200);
-                mMap.moveCamera(cu);
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
+
+                 */
+
             }
         });
 
@@ -194,12 +203,21 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, zoom));
 
     }
-    public static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
+    public static Bitmap createCustomMarker(Context context,@DrawableRes int resource, String _name, String URL) {
 
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
 
+
         CircleImageView markerImage = (CircleImageView) marker.findViewById(R.id.user_dp);
+        /*
+        Glide.with(context)
+                .load(URL)
+                .transform()
+                .into(markerImage);
+
+         */
         markerImage.setImageResource(resource);
+
         TextView txt_name = (TextView)marker.findViewById(R.id.name);
         txt_name.setText(_name);
 

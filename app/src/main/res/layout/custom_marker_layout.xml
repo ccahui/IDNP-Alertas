@@ -14,7 +14,7 @@
         android:layout_height="59dp"
         android:backgroundTint="@color/colorPrimary"
         android:background="@drawable/marker_image_new">
-        <TextView android:text="janet John"
+        <TextView android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

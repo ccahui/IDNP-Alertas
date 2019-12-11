@@ -37,6 +37,10 @@ public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosview
         return new Avisosviewholder(v);
     }
 
+    /**
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull AvisosAdapter.Avisosviewholder holder, int position) {
         holder.textView_nombre_aviso.setText(aviso.get(position).getNombre());
