@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.proyecto.R;
@@ -22,6 +25,7 @@ public class VerMas_Activity extends AppCompatActivity {
     private TextView descripcion;
     private ImageView imageView;
     private Button btn_llamar;
+    private  static final  int REQUEST_CALL=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,6 @@ public class VerMas_Activity extends AppCompatActivity {
         String nom = datos.getString("nombre");
         String ape = datos.getString("apellido");
         String desc = datos.getString("descripcion");
-        final String tel = datos.getString("telefono");
         System.out.println("Activity_Ver_Mas");
         System.out.println(posicion);
         Glide.with(VerMas_Activity.this)
@@ -50,14 +53,40 @@ public class VerMas_Activity extends AppCompatActivity {
         btn_llamar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(tel));
+                makePhoneCall();
+                /*Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(tel));
                 if (ActivityCompat.checkSelfPermission(VerMas_Activity.this, Manifest.permission.CALL_PHONE) !=
                         PackageManager.PERMISSION_GRANTED)
                     return;
-                startActivity(i);
+                startActivity(i);*/
             }
         });
 
 
+
+    }
+    private void makePhoneCall(){
+        Bundle datos = this.getIntent().getExtras();
+        String tel = datos.getString("telefono");
+        if(tel.trim().length() > 0){
+            if(ContextCompat.checkSelfPermission(VerMas_Activity.this,Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(VerMas_Activity.this,new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
+            }else{
+                String dial = "tel:" + tel;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == REQUEST_CALL){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                makePhoneCall();
+            }else{
+                Toast.makeText(this,"PERMISSION DENIED",Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

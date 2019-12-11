@@ -41,7 +41,7 @@ public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosview
     public void onBindViewHolder(@NonNull AvisosAdapter.Avisosviewholder holder, int position) {
         holder.textView_nombre_aviso.setText(aviso.get(position).getNombre());
         holder.textView_apellido_aviso.setText(aviso.get(position).getApellido());
-        holder.textView_descripcion_aviso.setText(aviso.get(position).getDescripcion());
+        //holder.textView_descripcion_aviso.setText(aviso.get(position).getDescripcion());
         Glide.with(mContext)
                 .load(aviso.get(position).getmImageUrl())
                 .centerCrop()
@@ -65,13 +65,13 @@ public class AvisosAdapter extends RecyclerView.Adapter<AvisosAdapter.Avisosview
         public ImageView imageView;
         public TextView textView_nombre_aviso;
         public TextView textView_apellido_aviso;
-        public TextView textView_descripcion_aviso;
+        //public TextView textView_descripcion_aviso;
 
         public Avisosviewholder(View view) {
             super(view);
             this.textView_nombre_aviso = view.findViewById(R.id.textView_nombre_aviso);
             this.textView_apellido_aviso = view.findViewById(R.id.textView_apellido_aviso);
-            this.textView_descripcion_aviso = view.findViewById(R.id.textView_descripcion_aviso);
+            //this.textView_descripcion_aviso = view.findViewById(R.id.textView_descripcion_aviso);
             this.imageView = view.findViewById(R.id.imageView_foto);
 
             view.setOnClickListener(this);

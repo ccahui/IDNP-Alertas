@@ -15,34 +15,33 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_warning_black_24dp" />
 
-        <TextView
-            android:id="@+id/textView_nombre_aviso"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombres"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#620019"
-            android:textSize="25sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView_apellido_aviso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Apellidos"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#620019"
-            android:textSize="25sp" />
+            <TextView
+                android:id="@+id/textView_nombre_aviso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombres"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#620019"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textView_descripcion_aviso"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Descripcion/Ubicacion"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textColor="@color/colorBlack" />
+            <TextView
+                android:id="@+id/textView_apellido_aviso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apellidos"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#620019"
+                android:textSize="25sp" />
+
+
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
