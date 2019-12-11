@@ -180,8 +180,6 @@ public class PublicarAviso extends AppCompatActivity {
 
                 SimpleDateFormat simpletaDateFormat = new SimpleDateFormat("SSS.ss-mm-hh-dd-MM-yyyy", Locale.getDefault());
 
-
-
                 String nombreFoto = simpletaDateFormat.format(new Date());
                 final StorageReference fotoReferencia = mStorageref.child(nombreFoto);
                 fotoReferencia.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
