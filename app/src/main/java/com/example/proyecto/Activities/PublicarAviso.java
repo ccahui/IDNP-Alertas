@@ -36,7 +36,10 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class PublicarAviso extends AppCompatActivity {
     private static final int RC_GET_IMG = 0;
@@ -174,16 +177,21 @@ public class PublicarAviso extends AppCompatActivity {
 
             if (mImageUri != null) {
 
-                StorageReference fileReference = mStorageref.child(System.currentTimeMillis()
-                        + "." + getFileExtension(mImageUri));
-                mStorageref.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+
+                SimpleDateFormat simpletaDateFormat = new SimpleDateFormat("SSS.ss-mm-hh-dd-MM-yyyy", Locale.getDefault());
+
+
+
+                String nombreFoto = simpletaDateFormat.format(new Date());
+                final StorageReference fotoReferencia = mStorageref.child(nombreFoto);
+                fotoReferencia.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                         if (!task.isSuccessful()){
                             throw task.getException();
                         }
 
-                        return mStorageref.getDownloadUrl();
+                        return fotoReferencia.getDownloadUrl();
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override

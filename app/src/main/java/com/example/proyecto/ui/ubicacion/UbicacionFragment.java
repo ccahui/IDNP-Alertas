@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +24,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proyecto.Activities.VerAviso;
+import com.example.proyecto.AvisosAdapter;
 import com.example.proyecto.MainActivity;
+import com.example.proyecto.Model.Aviso;
 import com.example.proyecto.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +42,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,6 +57,14 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
 
     private GoogleMap mMap;
     private LocationManager ubicacion;
+
+    private RecyclerView mRecyclerView;
+    private AvisosAdapter mAdapter;
+
+    private ProgressBar mProgressCircle;
+
+    private DatabaseReference mDatabaseRef;
+    private List<Aviso> mAvisos;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -89,6 +110,45 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
+
+
+
+               // mProgressCircle = findViewById(R.id.progress_circle);
+                /*
+                mAvisos = new ArrayList<>();
+
+                mDatabaseRef = FirebaseDatabase.getInstance().getReference("fotos_avisos");
+                mDatabaseRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            Aviso a = postSnapshot.getValue(Aviso.class);
+                            mAvisos.add(a);
+                        }
+                        mAdapter = new AvisosAdapter(VerAviso.this, mAvisos);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mAdapter.setOnItemCliclListener(VerAviso.this);
+                        mProgressCircle.setVisibility(View.INVISIBLE);
+                /*if (dataSnapshot.exists()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        textView_nombre_aviso = ds.child("Nombre").getValue().toString();
+                        textView_apellido_aviso = ds.child("Apellido").getValue().toString();
+                        textView_descripcion_aviso = ds.child("Descripcion").getValue().toString();
+                        textView_telefono = ds.child("Telefono").getValue().toString();
+                        //avisos.add(new Aviso(textView_nombre_aviso, textView_apellido_aviso, textView_descripcion_aviso, textView_telefono));
+                    }
+                    AvisosAdapter avisosAdapter = new AvisosAdapter(avisos);
+                    rv.setAdapter(avisosAdapter);
+                    avisosAdapter.notifyDataSetChanged();
+                }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(VerAviso.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                */
 
                 LatLng customMarkerLocationOne = new LatLng(-16.406839, -71.52239);
                 LatLng customMarkerLocationTwo = new LatLng(-16.406839, -71.52240);
