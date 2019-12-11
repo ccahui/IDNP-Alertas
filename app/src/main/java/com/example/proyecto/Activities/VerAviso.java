@@ -1,5 +1,9 @@
 package com.example.proyecto.Activities;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -7,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,18 +71,6 @@ public class VerAviso extends AppCompatActivity implements AvisosAdapter.OnItemC
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.setOnItemCliclListener(VerAviso.this);
                 mProgressCircle.setVisibility(View.INVISIBLE);
-                /*if (dataSnapshot.exists()) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        textView_nombre_aviso = ds.child("Nombre").getValue().toString();
-                        textView_apellido_aviso = ds.child("Apellido").getValue().toString();
-                        textView_descripcion_aviso = ds.child("Descripcion").getValue().toString();
-                        textView_telefono = ds.child("Telefono").getValue().toString();
-                        //avisos.add(new Aviso(textView_nombre_aviso, textView_apellido_aviso, textView_descripcion_aviso, textView_telefono));
-                    }
-                    AvisosAdapter avisosAdapter = new AvisosAdapter(avisos);
-                    rv.setAdapter(avisosAdapter);
-                    avisosAdapter.notifyDataSetChanged();
-                }*/
             }
 
             @Override
@@ -90,7 +83,20 @@ public class VerAviso extends AppCompatActivity implements AvisosAdapter.OnItemC
 
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(this,"Normal click at position: " + position,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(VerAviso.this, VerMas_Activity.class);
+        //intent.putExtra("telefono",mAvisos.get(position).getTelefono().toString());
+        intent.putExtra("imagen",mAvisos.get(position).getmImageUrl());
+        intent.putExtra("nombre",mAvisos.get(position).getNombre());
+        intent.putExtra("apellido",mAvisos.get(position).getApellido());
+        intent.putExtra("descripcion",mAvisos.get(position).getDescripcion());
+        intent.putExtra("telefono",mAvisos.get(position).getTelefono());
+        intent.putExtra("posicion",position);
+        startActivity(intent);
+        /*Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(mAvisos.get(position).getTelefono().toString()));
+        if (ActivityCompat.checkSelfPermission(VerAviso.this, Manifest.permission.CALL_PHONE) !=
+        PackageManager.PERMISSION_GRANTED)
+        return;
+        startActivity(i);*/
     }
 
     @Override
