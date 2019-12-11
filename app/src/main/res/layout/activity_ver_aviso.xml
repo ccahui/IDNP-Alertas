@@ -8,6 +8,8 @@
 
     <ProgressBar
         android:id="@+id/progress_circle"
+        android:paddingHorizontal="200dp"
+        android:paddingVertical="400dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

@@ -119,6 +119,7 @@
                     android:layout_weight="1.2"
                     android:ems="10"
                     android:gravity="top"
+                    android:hint="Ingrese ultima ubicacion y rasgos fisicos mas importantes"
                     android:inputType="text|textMultiLine" />
 
             </LinearLayout>
