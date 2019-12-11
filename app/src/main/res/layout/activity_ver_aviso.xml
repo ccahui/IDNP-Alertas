@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Activities.VerAviso">
 
+    <ProgressBar
+        android:id="@+id/progress_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_ver_avisos"
         android:layout_width="match_parent"

@@ -6,15 +6,21 @@ public class Aviso {
     private String apellido;
     private String descripcion;
     private String telefono;
-    private String imagen;
+    private String nombre_imagen;
+    private String mImageUrl;
 
+    public Aviso() {
+    }
 
-    public Aviso(String nombre, String apellido, String descripcion, String telefono) {
+    public Aviso(String mImageUrl, String nombre, String apellido, String descripcion, String telefono) {
+        this.mImageUrl = mImageUrl;
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
         this.telefono = telefono;
+
     }
+
 
     public String getTelefono() {
         return telefono;
@@ -56,11 +62,19 @@ public class Aviso {
         this.descripcion = descripcion;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getNombre_imagen() {
+        return nombre_imagen;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setNombre_imagen(String nombre_imagen) {
+        this.nombre_imagen = nombre_imagen;
+    }
+
+    public String getmImageUrl() {
+        return mImageUrl;
+    }
+
+    public void setmImageUrl(String mImageUrl) {
+        this.mImageUrl = mImageUrl;
     }
 }

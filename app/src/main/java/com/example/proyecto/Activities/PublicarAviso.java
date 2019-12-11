@@ -1,57 +1,59 @@
 package com.example.proyecto.Activities;
 
-import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import com.example.proyecto.MainActivity;
+import com.bumptech.glide.Glide;
 import com.example.proyecto.Model.Aviso;
 import com.example.proyecto.R;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class PublicarAviso extends AppCompatActivity {
     private static final int RC_GET_IMG = 0;
     private static final int RC_ACCESS = 1;
+    private static final int PICK_IMAGE_REQUEST = 1;
     private ArrayList<Aviso> avisos;
-    ImageView img;
-    private Uri fileURI;
+    private ImageView img;
+    private Uri mImageUri;
     private EditText nombre;
     private EditText apellido;
     private EditText descripcion;
     private EditText telefono;
-    private Button btnaviso;
-    private StorageReference storageReference;
+    private EditText mEditTextFileName;
+    private Button btnaviso, subir_imagen;
+    private StorageReference mStorageref;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-
+    private DatabaseReference mDatabaseRef;
+    private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
+    private StorageTask storageTask;
+    private TextView mTextViewShowUploads;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +64,35 @@ public class PublicarAviso extends AppCompatActivity {
         descripcion = findViewById(R.id.editTextDescripcion);
         telefono = findViewById(R.id.editTextTelefono);
         img = findViewById(R.id.pd_imagen);
-        avisos = new ArrayList<>();
-        storageReference = FirebaseStorage.getInstance().getReference();
-        inicializarFirebase();
         btnaviso = findViewById(R.id.buttonaviso);
+        subir_imagen = findViewById(R.id.subir_imagen);
+        progressBar = findViewById(R.id.progress_bar);
+        avisos = new ArrayList<>();
+
+        mStorageref = FirebaseStorage.getInstance().getReference("fotos_avisos");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("fotos_avisos");
+
+        subir_imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
+        btnaviso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (storageTask != null && storageTask.isInProgress()) {
+                    Toast.makeText(PublicarAviso.this, "Upload in Progress", Toast.LENGTH_SHORT);
+                } else {
+                    uploadFile();
+                }
+            }
+        });
+
+        /*storageReference = FirebaseStorage.getInstance().getReference();
+        inicializarFirebase();
+
+        progressDialog = new ProgressDialog(PublicarAviso.this);
         btnaviso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,26 +110,103 @@ public class PublicarAviso extends AppCompatActivity {
                     filePath.putFile(fileURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                            progressDialog.dismiss();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.setTitle("Publicando Aviso");
+                            progressDialog.show();
                         }
                     });
                     databaseReference.child("Avisos").child(UUID.randomUUID().toString()).setValue(map);
                     limpiarcajas();
-                    Toast.makeText(PublicarAviso.this,"Aviso Publicado",Toast.LENGTH_SHORT);
                     Intent intent = new Intent(PublicarAviso.this, MainActivity.class);
                     startActivity(intent);
+
 
                 }
 
 
             }
-        });
+        });*/
     }
 
-    private void inicializarFirebase() {
-        FirebaseApp.initializeApp(this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+    private void openFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            mImageUri = data.getData();
+
+           Glide.with(this).load(mImageUri).into(img);
+            //Picasso.get().load(mImageUri).into(img);
+        }
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void uploadFile() {
+        if (nombre.getText().toString().equals("") || apellido.getText().toString().equals("") || descripcion.getText().toString().equals("") || telefono.getText().toString().equals(""))
+            validacion();
+        else {
+            final String nom = nombre.getText().toString();
+            final String ape = apellido.getText().toString();
+            final String des = descripcion.getText().toString();
+            final String tel = telefono.getText().toString();
+
+            if (mImageUri != null) {
+                StorageReference fileReference = mStorageref.child(System.currentTimeMillis()
+                        + "." + getFileExtension(mImageUri));
+
+                storageTask = fileReference.putFile(mImageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        progressBar.setProgress(0);
+                                    }
+                                }, 5000);
+                                Toast.makeText(PublicarAviso.this, "Upload successful", Toast.LENGTH_LONG).show();
+                                Aviso avisos = new Aviso(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),nom,ape,des,tel);
+                                String uploadId = mDatabaseRef.push().getKey();
+                                limpiarcajas();
+                                mDatabaseRef.child(uploadId).setValue(avisos);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(PublicarAviso.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnProgressListener( new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                progressBar.setProgress((int) progress);
+                            }
+                        });
+            } else {
+                Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void validacion() {
@@ -119,13 +223,22 @@ public class PublicarAviso extends AppCompatActivity {
         if (tel.equals(""))
             telefono.setError("Required");
     }
-
     private void limpiarcajas() {
         nombre.setText("");
         apellido.setText("");
         descripcion.setText("");
         telefono.setText("");
     }
+
+    /*private void inicializarFirebase() {
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+
+
+
+
 
 
     public void getImage(View view) {
@@ -179,5 +292,5 @@ public class PublicarAviso extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
 }

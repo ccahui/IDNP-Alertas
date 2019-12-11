@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
@@ -23,7 +23,7 @@
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#620019"
-            android:textSize="21sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/textView_apellido_aviso"
@@ -33,23 +33,16 @@
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#620019"
-            android:textSize="21sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/textView_descripcion_aviso"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="Descripcion/Ubicacion"
             android:textAlignment="center"
+            android:textSize="20sp"
             android:textColor="@color/colorBlack" />
-
-        <Button
-            android:id="@+id/button_ver_mas_aviso"
-            android:layout_below="@id/textView_descripcion_aviso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ver Mas" />
-
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>
