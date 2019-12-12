@@ -118,7 +118,7 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
 
 
 
-               // mProgressCircle = findViewById(R.id.progress_circle);
+                // mProgressCircle = findViewById(R.id.progress_circle);
 
                 mAvisos = new ArrayList<>();
 
@@ -131,40 +131,26 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
                             Aviso a = postSnapshot.getValue(Aviso.class);
                             mAvisos.add(a);
                         }
-                        /*
-                        mAdapter = new AvisosAdapter(VerAviso.this, mAvisos);
-                        mRecyclerView.setAdapter(mAdapter);
-                        mAdapter.setOnItemCliclListener(VerAviso.this);
-                        mProgressCircle.setVisibility(View.INVISIBLE);
-                        *
-                         */
-                if (dataSnapshot.exists()) {
-                    final LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                    for (Aviso aviso : mAvisos) {
 
-                        Log.e("DATO BASe DE DATOS", aviso.getApellido());
-                        LatLng customMarkerLocation = new LatLng(-16.406839, -71.52239);
-                        mMap.addMarker(new MarkerOptions().position(customMarkerLocation).
-                                icon(BitmapDescriptorFactory.fromBitmap(
-                                        createCustomMarker(getContext(),R.drawable.persona_desconocida,aviso.getNombre(),aviso.getmImageUrl())))).setTitle(aviso.getDescripcion());
+                        if (dataSnapshot.exists()) {
+                            final LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                            for (Aviso aviso : mAvisos) {
 
-                        builder.include(customMarkerLocation); //Taking Point A (First LatLng)
-                        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(LayoutInflater.from(getActivity()),getContext(), aviso));
+                                Log.e("DATO BASe DE DATOS", aviso.getApellido());
+                                LatLng customMarkerLocation = new LatLng(-16.406839, -71.52239);
+                                mMap.addMarker(new MarkerOptions().position(customMarkerLocation).
+                                        icon(BitmapDescriptorFactory.fromBitmap(
+                                                createCustomMarker(getContext(),R.drawable.persona_desconocida,aviso.getNombre(),aviso.getmImageUrl())))).setTitle(aviso.getDescripcion());
+                                builder.include(customMarkerLocation); //Taking Point A (First LatLng)
+                                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(LayoutInflater.from(getActivity()),getContext(), aviso));
 
+                            }
+                            LatLngBounds bounds = builder.build();
+                            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 200);
+                            mMap.moveCamera(cu);
+                            mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
+                        }
                     }
-                    LatLngBounds bounds = builder.build();
-                    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 200);
-                    mMap.moveCamera(cu);
-                    mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
-                    /*
-                    AvisosAdapter avisosAdapter = new AvisosAdapter(avisos);
-                    rv.setAdapter(avisosAdapter);
-                    avisosAdapter.notifyDataSetChanged();
-                    *
-                     */
-                }
-                    }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
@@ -173,34 +159,14 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
                 });
 
 
-                /*
-                LatLng customMarkerLocationTwo = new LatLng(-16.406839, -71.52240);
-                LatLng customMarkerLocationThree = new LatLng(-16.406839, -71.52245);
-                LatLng customMarkerLocationFour = new LatLng(-16.406839, -71.52250);
 
-                mMap.addMarker(new MarkerOptions().position(customMarkerLocationTwo).
-                        icon(BitmapDescriptorFactory.fromBitmap(
-                                createCustomMarker(getContext(),R.drawable.acoso,"Narender")))).setTitle("Hotel Nirulas Noida");
-
-                mMap.addMarker(new MarkerOptions().position(customMarkerLocationThree).
-                        icon(BitmapDescriptorFactory.fromBitmap(
-                                createCustomMarker(getContext(),R.drawable.acoso,"Neha")))).setTitle("Acha Khao Acha Khilao");
-                mMap.addMarker(new MarkerOptions().position(customMarkerLocationFour).
-                        icon(BitmapDescriptorFactory.fromBitmap(
-                                createCustomMarker(getContext(),R.drawable.acoso,"Nupur")))).setTitle("Subway Sector 16 Noida");
-
-                //LatLngBound will cover all your marker on Google Maps
-
-                builder.include(customMarkerLocationThree); //Taking Point B (Second LatLng)
-
-                 */
 
             }
         });
 
 
 
-       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, zoom));
+        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, zoom));
 
     }
     public static Bitmap createCustomMarker(Context context,@DrawableRes int resource, String _name, String URL) {
@@ -212,8 +178,9 @@ public class UbicacionFragment extends Fragment implements OnMapReadyCallback, G
         /*
         Glide.with(context)
                 .load(URL)
-                .transform()
+                .transform(new CircularTransformation())
                 .into(markerImage);
+
 
          */
         markerImage.setImageResource(resource);
